@@ -1,0 +1,11 @@
+<h2>Login</h2>
+<form #f="ngForm" (ngSubmit)="f.form.valid && login(f)">
+  <label for="email">Email</label>
+  <input type="email" name="email" ngModel required />
+  <label for="password">Password</label>
+  <input type="password" name="password" ngModel required />
+
+  <i *ngIf="loading" class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+  <button [disabled]="loading" class="btn btn-primary">Login</button>
+  <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+</form>
