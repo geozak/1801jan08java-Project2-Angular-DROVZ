@@ -6,8 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  profileName: String;
   constructor() { }
+
+  search(input: string): void {
+    console.log(input);
+  }
 
   ngOnInit() {
   }
