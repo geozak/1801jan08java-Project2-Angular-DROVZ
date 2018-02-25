@@ -1,8 +1,8 @@
 export class Trainer {
     id: number;
-    username: string;
+    url: string;
     firstName: string;
     lastName: string;
-    email: string;
-    profilePhoto: string | null;
+    email: string | null;
+    profilePictureUrl: string | null;
 }
