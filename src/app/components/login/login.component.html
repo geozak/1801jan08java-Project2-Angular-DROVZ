@@ -1,11 +1,51 @@
-<h2>Login</h2>
-<form #f="ngForm" (ngSubmit)="f.form.valid && login(f)">
-  <label for="email">Email</label>
-  <input type="email" name="email" ngModel required />
-  <label for="password">Password</label>
-  <input type="password" name="password" ngModel required />
+<div class="login-page">
 
-  <i *ngIf="loading" class="fa fa-spinner fa-spin" style="font-size:24px"></i>
-  <button [disabled]="loading" class="btn btn-primary">Login</button>
-  <a [routerLink]="['/register']" class="btn btn-link">Register</a>
-</form>
+  <div *ngIf="isReset" class="reset-password">
+    <h2>Reset Password</h2>
+    <div class="form-group">
+      <input #oldpassword type="text" class="form-control" id="firstName" placeholder="Old password">
+    </div>
+    <div class="form-group">
+      <input #newpassword1 type="text" class="form-control" id="lastName" placeholder="New password">
+    </div>
+    <div class="form-group">
+      <input #newpassword2 type="text" class="form-control" id="username" placeholder="Confirm new password">
+    </div>
+    <button (click)="toggleReset()" class="btn btn-primary btn-update">Update</button>
+  </div>
+
+  <div *ngIf=!isRegister class="login-form">
+    <h2>Login</h2>
+    <form #f="ngForm" (ngSubmit)="f.form.valid && login(f)">
+      <input type="email" name="email" placeholder="Email" ngModel required /><br />
+      <input type="password" name="password" placeholder="Password" ngModel required />
+      <a (click)="toggleReset()" class="btn btn-link btn-reset" >Reset Password</a>
+
+      <i *ngIf="loading" class="fa fa-spinner fa-spin" style="font-size:24px"></i><br />
+      <button [disabled]="loading" class="btn btn-primary">Login</button>
+      <a (click)="toggleRegister()" class="btn btn-link btn-register" >Register</a>
+    </form>
+  </div>
+
+  <div *ngIf=isRegister class="register-user">
+    <h2>Register</h2>
+    <div class="form-group">
+      <input #firstName type="text" class="form-control" id="firstName" placeholder="First name">
+    </div>
+    <div class="form-group">
+      <input #lastName type="text" class="form-control" id="lastName" placeholder="Last name">
+    </div>
+    <div class="form-group">
+      <input #username type="text" class="form-control" id="username" placeholder="Username">
+    </div>
+    <div class="form-group">
+      <input #email type="email" class="form-control" id="email" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <input #email type="password" class="form-control" id="email" placeholder="Password">
+    </div>
+    <button (click)="editUser(firstName.value, lastName.value, username.value, email.value); toggleEdit();" class="btn btn-primary btn-edit">Submit</button>
+    <a (click)="toggleRegister()" class="btn btn-link btn-login" >Login</a>
+  </div>
+
+</div>

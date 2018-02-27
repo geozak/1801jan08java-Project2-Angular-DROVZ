@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
+  isRegister: Boolean = false;
+  isReset: Boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,5 +50,13 @@ export class LoginComponent implements OnInit {
             this.loading = false;
           });
     }
+  }
+
+  toggleRegister() {
+    this.isRegister = !this.isRegister;
+  }
+
+  toggleReset() {
+    this.isReset = !this.isReset;
   }
 }

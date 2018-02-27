@@ -38,7 +38,7 @@ export class PostComponent implements OnInit {
   likePost(post: Post): void {
     const liker_id = JSON.parse(localStorage.getItem('currentTrainer')).id;
 
-    if (post.likers_id.includes(liker_id) {
+    if (post.likers_id.includes(liker_id)) {
       const index = post.likers_id.indexOf(liker_id);
       post.likers_id.splice(index, 1);
     } else {
