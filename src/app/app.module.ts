@@ -12,6 +12,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeroService } from './services/hero.service';
+import { PostService } from './services/post.service';
+import { PostComponent } from './components/post/post.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -21,9 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     WelcomeComponent,
     LoginComponent,
     HomeComponent,
-    NavbarComponent
-
-
+    NavbarComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +36,11 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     AuthService,
     AuthGuard,
-    HeroService
+    HeroService,
+    PostService,
+    HttpModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })

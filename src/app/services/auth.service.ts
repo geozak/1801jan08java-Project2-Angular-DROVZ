@@ -14,7 +14,7 @@ export class AuthService {
     console.log('logging in');
 
     let demo: Trainer | null;
-    if (email === 'zak' && password === '1234') {
+    if (email === 'user@gmail.com' && password === '1234') {
       demo = {
         id: 1,
         email: email,
