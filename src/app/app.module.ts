@@ -13,6 +13,7 @@ import { PostService } from './services/post.service';
 import { PostComponent } from './components/post/post.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     WelcomeComponent,
     LoginComponent,
     HomeComponent,
-    PostComponent
+    PostComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

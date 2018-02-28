@@ -24,11 +24,17 @@ export class HomeComponent implements OnInit {
   editUser(firstName, lastName, username, email) {
     if (firstName.trim() !== '') {
       this.currentTrainer.firstName = firstName;
-    } else if (lastName.trim() !== '') {
+    }
+
+    if (lastName.trim() !== '') {
       this.currentTrainer.lastName = lastName;
-    } else if (username.trim() !== '') {
+    }
+
+    if (username.trim() !== '') {
       this.currentTrainer.username = username;
-    } else if (email.trim() !== '') {
+    }
+
+    if (email.trim() !== '') {
       this.currentTrainer.email = email;
     }
   }
