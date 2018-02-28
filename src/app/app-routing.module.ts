@@ -5,6 +5,8 @@ import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/feed-page', pathMatch: 'full' },
@@ -12,7 +14,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'feed-page', component: FeedPageComponent },
-
+  { path: 'register', component: RegistrationComponent },
+  { path: 'reset', component: ResetComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];
@@ -21,4 +24,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

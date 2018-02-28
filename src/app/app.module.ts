@@ -14,6 +14,8 @@ import { PostComponent } from './components/post/post.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FeedPageComponent } from './components/feed-page/feed-page.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { FeedPageComponent } from './components/feed-page/feed-page.component';
     HomeComponent,
     PostComponent,
     FeedPageComponent
+    RegistrationComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,
