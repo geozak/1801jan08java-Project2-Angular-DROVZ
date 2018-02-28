@@ -17,6 +17,9 @@ import { PostComponent } from './components/post/post.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewpageComponent } from './components/viewpage/viewpage.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { ResetComponent } from './components/reset/reset.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { ViewpageComponent } from './components/viewpage/viewpage.component';
     HomeComponent,
     NavbarComponent,
     PostComponent,
-    ViewpageComponent
+    ViewpageComponent,
+    PostComponent,
+    RegistrationComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,

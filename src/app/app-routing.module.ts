@@ -5,6 +5,9 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ViewpageComponent } from './components/viewpage/viewpage.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { ResetComponent } from './components/reset/reset.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -12,6 +15,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   {path: 'view/:id', component: ViewpageComponent},
+  { path: 'register', component: RegistrationComponent },
+  { path: 'reset', component: ResetComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];
@@ -20,4 +25,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

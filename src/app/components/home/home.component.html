@@ -6,11 +6,11 @@
   </div>
 
   <div class="user-info">
-    <img src="{{ currentTrainer.profilePhoto }}" alt="" height="150" width="150" class="profile-img" />
+    <img src="{{ currentTrainer.profilePictureUrl }}" alt="" height="150" width="150" class="profile-img" />
     <p>
       {{ currentTrainer.firstName }} {{ currentTrainer.lastName }}<br />
       {{ currentTrainer.email }}<br />
-      {{ currentTrainer.username }}<br />
+      {{ currentTrainer.url }}<br />
       <a (click)="toggleEdit()" class="btn btn-link btn-edit">Edit</a>
     </p>
   </div>
@@ -29,15 +29,15 @@
         <input #lastName type="text" class="form-control" id="lastName" placeholder="Last name">
       </div>
       <div class="form-group">
-        <label for="username">Username</label>
-        <input #username type="text" class="form-control" id="username" placeholder="Username">
+        <label for="username">Profile url</label>
+        <input #username type="text" class="form-control" id="url" placeholder="Profile url">
       </div>
       <div class="form-group">
         <label for="email">Email</label>
         <input #email type="email" class="form-control" id="email" placeholder="Email">
       </div>
       <button (click)="editUser(firstName.value, lastName.value, username.value, email.value); toggleEdit();" class="btn btn-primary btn-submit">Submit</button>
-    </div>
+    </div> <!-- end .edit-user -->
 
     <!--<input class="form-control search" type="text" placeholder="Search users">>-->
  
