@@ -30,10 +30,6 @@ export class HomeComponent implements OnInit {
       this.currentTrainer.lastName = lastName;
     }
 
-    if (username.trim() !== '') {
-      this.currentTrainer.username = username;
-    }
-
     if (email.trim() !== '') {
       this.currentTrainer.email = email;
     }
