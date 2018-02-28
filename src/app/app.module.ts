@@ -14,6 +14,7 @@ import { PostComponent } from './components/post/post.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RegistrationComponent } from './components/registration/registration.co
     LoginComponent,
     HomeComponent,
     PostComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,

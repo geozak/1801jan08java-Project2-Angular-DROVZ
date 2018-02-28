@@ -1,25 +1,11 @@
 <div class="login-page">
 
-  <div *ngIf="isReset" class="reset-password">
-    <h2>Reset Password</h2>
-    <div class="form-group">
-      <input #oldpassword type="text" class="form-control" id="firstName" placeholder="Old password">
-    </div>
-    <div class="form-group">
-      <input #newpassword1 type="text" class="form-control" id="lastName" placeholder="New password">
-    </div>
-    <div class="form-group">
-      <input #newpassword2 type="text" class="form-control" id="username" placeholder="Confirm new password">
-    </div>
-    <button (click)="toggleReset()" class="btn btn-primary btn-update">Update</button>
-  </div>
-
   <div class="login-form">
     <h2>Login</h2>
     <form #f="ngForm" (ngSubmit)="f.form.valid && login(f)">
       <input type="email" name="email" placeholder="Email" ngModel required /><br />
       <input type="password" name="password" placeholder="Password" ngModel required />
-      <a (click)="toggleReset()" class="btn btn-link btn-reset" >Reset Password</a>
+      <a routerLink="/reset" class="btn btn-link btn-reset" >Reset Password</a>
 
       <i *ngIf="loading" class="fa fa-spinner fa-spin" style="font-size:24px"></i><br />
       <button [disabled]="loading" class="btn btn-primary">Login</button>

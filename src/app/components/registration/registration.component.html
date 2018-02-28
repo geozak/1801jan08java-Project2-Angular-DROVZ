@@ -1,5 +1,6 @@
 <div class="register-user">
   <h2>Register</h2>
+  <div *ngIf=this.message class="alert alert-danger">{{ this.message }}</div>
   <div class="form-group">
     <input #firstName type="text" class="form-control" id="firstName" placeholder="First name">
   </div>
