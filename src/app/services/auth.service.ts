@@ -21,7 +21,7 @@ export class AuthService {
         username: 'myUsername',
         firstName: 'myFirst',
         lastName: 'myLast',
-        profilePhoto: 'someurl'
+        profilePhoto: 'https://orig00.deviantart.net/01b0/f/2016/093/d/2/pokemon_trainer_allan_fullbody_by_ravenide-d9xj0wc.png'
       };
     } else {
       demo = null;

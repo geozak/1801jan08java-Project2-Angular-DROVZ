@@ -12,7 +12,7 @@ export class PostService {
     return [{
         post_id: 1,
         post_desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
-        trainer_id: 1,
+        trainer_id: 3,
         post_timestamp: 'Tue Feb 20 2018 09:13:06 GMT-0500 (EST)',
         likers_id: []
       }, {
@@ -25,6 +25,12 @@ export class PostService {
         post_id: 3,
         post_desc: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         trainer_id: 1,
+        post_timestamp: 'Thu Feb 22 2018 10:13:06 GMT-0500 (EST)',
+        likers_id: []
+      }, {
+        post_id: 4,
+        post_desc: 'Stuff happened today :(.',
+        trainer_id: 2,
         post_timestamp: 'Thu Feb 22 2018 10:13:06 GMT-0500 (EST)',
         likers_id: []
       }

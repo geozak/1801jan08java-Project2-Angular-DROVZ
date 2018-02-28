@@ -1,0 +1,24 @@
+<div class="container">
+
+  <div class="header">
+    <h1 routerLink='/feed-page' class="title">Pokebook</h1>
+    <nav class="nav">
+      <a [routerLink]="['/login']">Logout</a>
+    </nav>
+  </div>
+
+  <div class="user-info">
+    <div class="thumbnail">
+      <a routerLink='/home' class="">
+        <img src="{{ currentTrainer.profilePhoto }}" alt="" height="75" width="75" class="profile-img" />
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="main">
+    <input class="form-control search" type="text" placeholder="Search users">
+    <app-post></app-post>
+  </div> <!-- end .main -->
+
+</div> <!-- end .container -->
