@@ -13,28 +13,35 @@ export class NavbarComponent implements OnInit {
   profileName: String;
   public heroes: Hero[] = [];
   public currHeroes: Hero;
+  image = 'assets/images/Pokeball.jpg';
 
   constructor(private heroService: HeroService) { }
 
-  search(input: string): void {
-    console.log(input);
-  }
 
   ngOnInit() {
+    this.getAllHeroes();
   }
 
-  getAllHeroes(input: string): void {
+ findUser(input: string): void {
+  let i: number;
+  for (i = 0; i < this.heroes.length; i++ ) {
+     if ( this.heroes[i].name === input || String(this.heroes[i].id) === input ) {
+         this.currHeroes = this.heroes[i];
+         // console.log(this.currHeroes.name.length)
+     }
+  }
+ }
+
+ deselectHero(): void {
+  this.currHeroes = null;
+ }
+
+  getAllHeroes(): void {
     this.heroService.getAllHeroes().subscribe(
       Newheroes => this.heroes = Newheroes
-      // error => this.message.text = 'No Heroes to show.'
     );
-     console.log(input);
-     let i: number;
-     for (i = 0; i < this.heroes.length; i++ ) {
-        if ( this.heroes[i].name === input) {
-            this.currHeroes = this.heroes[i];
-            // console.log(this.currHeroes.name.length)
-        }
-     }
+
+
+
   }
 }

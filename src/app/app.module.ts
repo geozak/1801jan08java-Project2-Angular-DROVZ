@@ -16,6 +16,7 @@ import { PostService } from './services/post.service';
 import { PostComponent } from './components/post/post.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewpageComponent } from './components/viewpage/viewpage.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     HomeComponent,
     NavbarComponent,
-    PostComponent
+    PostComponent,
+    ViewpageComponent
   ],
   imports: [
     BrowserModule,
