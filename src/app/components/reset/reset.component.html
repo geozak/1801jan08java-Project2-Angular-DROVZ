@@ -1,13 +1,10 @@
 <div class="reset-password">
   <h2>Reset Password</h2>
   <div class="form-group">
-    <input #oldpassword type="text" class="form-control" id="firstName" placeholder="Old password">
+    <input #email type="text" class="form-control" id="email" placeholder="Email">
   </div>
   <div class="form-group">
-    <input #newpassword1 type="text" class="form-control" id="lastName" placeholder="New password">
-  </div>
-  <div class="form-group">
-    <input #newpassword2 type="text" class="form-control" id="username" placeholder="Confirm new password">
+    <input #password type="text" class="form-control" id="username" placeholder="New password">
   </div>
   <button (click)="resetPassword()" class="btn btn-primary btn-update">Update</button>
 </div>

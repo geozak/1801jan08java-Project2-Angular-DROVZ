@@ -3,3 +3,10 @@
     margin: 0 auto;
     margin-top: 200px;
 }
+
+.custom-file-control:before{
+    content: "Browse";
+  }
+  .custom-file-control:after{
+    content: "Add files..";
+  }

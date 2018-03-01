@@ -8,7 +8,13 @@
       <a routerLink="/reset" class="btn btn-link btn-reset" >Reset Password</a>
 
       <i *ngIf="loading" class="fa fa-spinner fa-spin" style="font-size:24px"></i><br />
-      <button [disabled]="loading" class="btn btn-primary">Login</button>
+      <button [disabled]=this.loading class="btn btn-primary">
+          <ng-container *ngIf="loading">
+              <i class="fa fa-spinner fa-spin" style="font-size:18px"></i>
+              &nbsp;
+          </ng-container>
+        Login</button>
+
       <a routerLink="/register" class="btn btn-link btn-register">Register</a>
     </form>
   </div>

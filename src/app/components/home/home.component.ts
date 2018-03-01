@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   constructor() {
     this.currentTrainer = JSON.parse(localStorage.getItem('currentTrainer'));
+    console.log(this.currentTrainer);
   }
 
   ngOnInit() {
