@@ -13,7 +13,15 @@ export class FeedPageComponent implements OnInit {
   returnUrl: string;
 
   constructor() {
-    this.currentTrainer = JSON.parse(localStorage.getItem('currentTrainer'));
+   this.currentTrainer = JSON.parse(localStorage.getItem('currentTrainer'));
+    /* this.currentTrainer = new Trainer();
+    this.currentTrainer.id = 1;
+    this.currentTrainer.firstName = 'firstname';
+    this.currentTrainer.lastName = 'lastname';
+    this.currentTrainer.email = 'user@gmail.com'; */
+    /* this.currentTrainer.profilePictureUrl = 'http:'
+    + '//www.pgconnects.com/helsinki/wp-content/uploads/sites/3/2015/07/generic-profile-grey-380x380.jpg'; */
+    console.log(this.currentTrainer);
    }
 
   ngOnInit() {
