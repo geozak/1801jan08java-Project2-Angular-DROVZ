@@ -1,0 +1,18 @@
+<div class="create-post">
+  <h2>CREATE POST</h2>
+  <textarea #post rows="4" cols="42"></textarea><br />
+  <button (click)="createPost(post.value); post.value=''" class="btn btn-primary btn-post">Post</button>
+</div>
+
+<div class="view-posts">
+  <h2>POSTS</h2>
+  <ul>
+    <li *ngFor="let post of posts" class="post">
+      <p class="post-time">{{post.post_timestamp}}</p>
+      <p class="post-desc">{{post.post_desc}}</p>
+      <a (click)="likePost(post)" class="btn btn-link btn-like">Like {{post.likers_id.length}}</a>
+    </li>
+  </ul>
+</div>
+
+

@@ -1,11 +1,22 @@
-<h2>Login</h2>
-<form #f="ngForm" (ngSubmit)="f.form.valid && login(f)">
-  <label for="email">Email</label>
-  <input type="email" name="email" ngModel required />
-  <label for="password">Password</label>
-  <input type="password" name="password" ngModel required />
+<div class="login-page">
 
-  <i *ngIf="loading" class="fa fa-spinner fa-spin" style="font-size:24px"></i>
-  <button [disabled]="loading" class="btn btn-primary">Login</button>
-  <a [routerLink]="['/register']" class="btn btn-link">Register</a>
-</form>
+  <div class="login-form">
+    <h2>Login</h2>
+    <form #f="ngForm" (ngSubmit)="f.form.valid && login(f)">
+      <input type="email" name="email" placeholder="Email" ngModel required /><br />
+      <input type="password" name="password" placeholder="Password" ngModel required />
+      <a routerLink="/reset" class="btn btn-link btn-reset" >Reset Password</a>
+
+      <i *ngIf="loading" class="fa fa-spinner fa-spin" style="font-size:24px"></i><br />
+      <button [disabled]=this.loading class="btn btn-primary">
+          <ng-container *ngIf="loading">
+              <i class="fa fa-spinner fa-spin" style="font-size:18px"></i>
+              &nbsp;
+          </ng-container>
+        Login</button>
+
+      <a routerLink="/register" class="btn btn-link btn-register">Register</a>
+    </form>
+  </div>
+
+</div>
