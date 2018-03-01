@@ -10,6 +10,11 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { AuthService } from './services/auth.service';
+ 
+import {DetailsUploadComponent} from './components/details-upload/details-upload.component';
+import {FormUploadComponent} from './components/form-upload/form-upload.component';
+import {ListUploadComponent} from './components/list-upload/list-upload.component';
+import {UploadFileService} from './services/upload-file.service';
 
 
 @NgModule({
@@ -17,7 +22,10 @@ import { AuthService } from './services/auth.service';
     AppComponent,
     WelcomeComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ListUploadComponent,
+    DetailsUploadComponent,
+    FormUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +35,8 @@ import { AuthService } from './services/auth.service';
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    UploadFileService
   ],
   bootstrap: [AppComponent]
 })
