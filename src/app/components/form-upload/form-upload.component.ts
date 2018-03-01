@@ -39,7 +39,9 @@ export class FormUploadComponent implements OnInit {
       } else if (event instanceof HttpResponse) {
         console.log('File is completely uploaded!');
       }
-    })
+    }
+    , err => alert(err)
+  )
  
     this.selectedFiles = undefined
   }
