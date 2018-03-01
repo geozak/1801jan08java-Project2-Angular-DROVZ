@@ -44,12 +44,13 @@
                   </div>
               
                   <!-- Collect the nav links, forms, and other content for toggling -->
+
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                       <a routerLink="/home" ><img src="{{image}}" style="width:42px;height:42px;" /></a>
                     </ul>
-                    
-                    <div class="navbar-nav navbar" style="padding-right:10px">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-6" >
                         <div class="list-group" id="searchList" #searchList>
                             <input #searchBox class="form-control search" id="myInput" type="text" placeholder="Search users.." (keyup)="findUser(searchBox.value)">
                                   <div *ngIf="currHeroes">
@@ -62,10 +63,10 @@
                         <li><a routerLink="/login">Logout</a></li>
                     </ol>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a routerLink="/login">Feed</a></li>
+                        <li><a routerLink="">Feed</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                      <li><a routerLink="/login">Home</a></li>
+                      <li><a routerLink="/home">Home</a></li>
                   </ul>
 
 
