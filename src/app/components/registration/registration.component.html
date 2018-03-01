@@ -1,6 +1,6 @@
 <div class="register-user">
   <h2>Register</h2>
-  <div *ngIf=this.message class="alert alert-danger">{{ this.message }}</div>
+  <p *ngIf=this.message class="alert alert-danger">{{ this.message }}</p>
   <div class="form-group">
     <input #firstName type="text" class="form-control" id="firstName" placeholder="First name">
   </div>
@@ -13,6 +13,12 @@
   <div class="form-group">
     <input #password type="password" class="form-control" id="password" placeholder="Password">
   </div>
-  <button (click)="registerUser(firstName.value, lastName.value, email.value, password.value)" class="btn btn-primary btn-edit">Register</button>
+  <button [disabled]=this.loading (click)="registerUser(firstName.value, lastName.value, email.value, password.value)" class="btn btn-primary btn-edit">
+      <ng-container *ngIf="loading">
+          <i class="fa fa-spinner fa-spin" style="font-size:18px"></i>
+          &nbsp;
+      </ng-container>
+    Register
+  </button>
 </div>
 

@@ -37,7 +37,35 @@ export class PostService {
     ];
   }
 
-  addPost(post: string): Observable<Post> {
+  newPost(post_desc: string, trainer_id: number): Observable<string> {
+    return;
+  }
+
+  get(id: number): Observable<string> {
+    return;
+  }
+
+  getAllbyTrainer(id: number): Observable<string> {
+    return;
+  }
+
+  getAll(): Observable<string> {
+    return;
+  }
+
+  getAllLikedByTrainer(id: number): Observable<string> {
+    return;
+  }
+
+  addPhoto(id: number, filePath: string): Observable<string> {
+    return;
+  }
+
+  like(postID: number, userID: number): Observable<string> {
+    return;
+  }
+
+  unlike(postID: number, userID: number): Observable<string> {
     return;
   }
 }

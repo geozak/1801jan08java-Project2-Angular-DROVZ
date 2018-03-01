@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<Trainer | null > {
+  login(email: string, password: string): Observable<Trainer | null> {
     console.log('logging in');
 
     const formdata: FormData = new FormData();
@@ -45,11 +45,33 @@ export class AuthService {
     formdata.append('profilePhotoUrl', 'http://www.pgconnects.com'
     + '/helsinki/wp-content/uploads/sites/3/2015/07/generic-profile-grey-380x380.jpg');
 
-    return this.http.post<string>(domain + '/register', formdata, { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) });
+    return this.http.post<any>(domain + '/register', formdata,
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      .map(message => {
+        console.log('mapping:');
+        console.log(message);
+        return message.message;
+      });
   }
 
   logout(): void {
     // remove trainer from local storage to log trainer out
     localStorage.removeItem('currentTrainer');
+  }
+
+  requestReset(email: string): Observable<string> {
+    return;
+  }
+
+  reset(token: string, email: string): Observable<string> {
+    return;
+  }
+
+  updatePassword(oldPassword: string, newPassword: string): Observable<string> {
+    return;
+  }
+
+  loggedIn(): Boolean {
+    return;
   }
 }
