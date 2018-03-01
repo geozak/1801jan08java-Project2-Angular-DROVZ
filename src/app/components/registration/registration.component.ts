@@ -28,6 +28,7 @@ export class RegistrationComponent implements OnInit {
 
     response.subscribe(
       data => {
+        console.log(data);
         switch (data) {
           case 'success':
             this.router.navigate(['/login']);
@@ -47,10 +48,16 @@ export class RegistrationComponent implements OnInit {
         this.loading = false;
       },
       error => {
+        console.log(error);
         this.message = 'Unknown error occured.';
         this.loading = false;
       }
     );
+  }
+
+  uploadPhoto(): void {
+    console.log('hit upload button');
+    return;
   }
 
 }
