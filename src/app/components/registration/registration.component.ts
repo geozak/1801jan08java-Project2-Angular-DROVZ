@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
   loading = false;
   message: string | null = null;
+  validEmail = true;
 
   constructor(
     private auth: AuthService,
@@ -53,6 +53,11 @@ export class RegistrationComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+
+  validateEmail(email): void {
+    const regex = /[^@]+@[^@]+\.[a-zA-Z]{2,6}/;
+    this.validEmail = regex.test(email);
   }
 
   uploadPhoto(): void {

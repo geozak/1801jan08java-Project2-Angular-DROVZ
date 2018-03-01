@@ -8,9 +8,13 @@
     margin-bottom: 70px;
 }
 
-.btn-edit {
+.btn-edit, .btn-upload {
     color: #007bff !important;
     padding: 2px 0;
+}
+
+.btn-upload {
+    margin-top: -7px;
 }
 
 .nav { 
@@ -39,6 +43,7 @@
 
 .profile-img {
     display: block;
-    border: 1px solid #000;
-    border-radius: 10px;
+    border: 1px solid #ccc;
+    border-radius: 80px;
+    margin-bottom: 10px;
 }
