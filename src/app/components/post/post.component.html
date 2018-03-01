@@ -8,6 +8,7 @@
   <h2>POSTS</h2>
   <ul>
     <li *ngFor="let post of posts" class="post">
+      <img src="" height="60" width="60" class="profile-thumbnail" />
       <p class="post-time">{{post.post_timestamp}}</p>
       <p class="post-desc">{{post.post_desc}}</p>
       <a (click)="likePost(post)" class="btn btn-link btn-like">Like {{post.likers_id.length}}</a>
