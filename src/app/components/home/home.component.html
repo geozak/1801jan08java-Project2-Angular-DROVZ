@@ -2,17 +2,36 @@
 <div class="container">
 
   <div class="header">
-    <h1 class="title">Pokebook</h1>
+    <h1 class="title" routerLink='/feed-page'>Pokebook</h1>
+    <nav class="nav">
+      <a [routerLink]="['/login']">Logout</a>
+    </nav>
   </div>
 
   <div class="user-info">
-    <img src="{{ currentTrainer.profilePictureUrl }}" alt="" height="150" width="150" class="profile-img" />
+      <div *ngIf="currentFileUpload && progress.percentage != 100" class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped"
+            role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+            aria-valuemin="0" aria-valuemax="100"
+            [ngStyle]="{width:progress.percentage+'%'}">
+            {{progress.percentage}}%</div>
+        </div>
+    <!-- <div>
+      <div  style="background-image:url('{{currentTrainer.profilePictureUrl}}');" height="150" width="150" class="profile-img bg"></div>
+      <div *ngIf=!currentTrainer.profilePictureUrl style="background-image:url('https://www.atomix.com.au/media/2015/06/atomix_user31.png');" height="150" width="150" class="profile-img bg"></div>
+      
+    </div> -->
+    <div (mouseleave)="isHovered = false" (mouseenter)="isHovered = true" class="containIm">
+        <img *ngIf=currentTrainer.profilePictureUrl src="{{currentTrainer.profilePictureUrl}}">
+        <img *ngIf=!currentTrainer.profilePictureUrl src="https://www.atomix.com.au/media/2015/06/atomix_user31.png">
+        <input *ngIf=isHovered class="inp" id ="fileName" type="file" (change)="selectFile($event)" accept="image/*">
+      </div>
     <p>
-      {{ currentTrainer.firstName }} {{ currentTrainer.lastName }}<br />
+      {{ currentTrainer.firstName }} &nbsp; &nbsp; &nbsp;{{ currentTrainer.lastName }}<br />
       {{ currentTrainer.email }}<br />
       {{ currentTrainer.url }}<br />
-      <a (click)="toggleEdit()" class="btn btn-link btn-edit">Edit</a>
-      <a class="btn btn-link btn-edit">Upload Photo</a>
+      <a (click)="toggleEdit()" class="btn btn-link btn-edit">Edit</a><br />
+      <!-- <a class="btn btn-link btn-upload">Upload Photo</a> -->
     </p>
   </div>
   
@@ -22,22 +41,19 @@
     <div *ngIf=isEdit class="edit-user">
       <h2>EDIT PROFILE</h2>
       <div class="form-group">
-        <label for="firstName">First name</label>
         <input #firstName type="text" class="form-control" id="firstName" placeholder="First name">
       </div>
       <div class="form-group">
-        <label for="lastName">Last name</label>
         <input #lastName type="text" class="form-control" id="lastName" placeholder="Last name">
       </div>
       <div class="form-group">
-        <label for="username">Profile url</label>
-        <input #username type="text" class="form-control" id="url" placeholder="Profile url">
+        <input #url type="text" class="form-control" id="url" placeholder="Profile url">
       </div>
+      <p *ngIf=!this.validEmail class="alert alert-danger">Invalid email</p>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input #email type="email" class="form-control" id="email" placeholder="Email">
+        <input #email (blur)="validateEmail(email.value)" type="email" class="form-control" id="email" placeholder="Email">
       </div>
-      <button (click)="editUser(firstName.value, lastName.value, username.value, email.value); toggleEdit();" class="btn btn-primary btn-submit">Submit</button>
+      <button (click)="editUser(firstName.value, lastName.value, url.value, email.value); toggleEdit();" class="btn btn-primary btn-submit">Submit</button>
     </div> <!-- end .edit-user -->
 
     <!--<input class="form-control search" type="text" placeholder="Search users">>-->

@@ -12,13 +12,20 @@ import { AppRoutingModule } from './/app-routing.module';
 import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TrainerService } from './services/trainer.service';
+import {DetailsUploadComponent} from './components/details-upload/details-upload.component';
+import {FormUploadComponent} from './components/form-upload/form-upload.component';
+import {ListUploadComponent} from './components/list-upload/list-upload.component';
+import {UploadFileService} from './services/upload-file.service';
 import { PostService } from './services/post.service';
 import { PostComponent } from './components/post/post.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewpageComponent } from './components/viewpage/viewpage.component';
+import { FeedPageComponent } from './components/feed-page/feed-page.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { FeedPostsComponent } from './components/feed-posts/feed-posts.component';
+import { ProfileService } from './services/profile.service';
 
 
 
@@ -29,11 +36,15 @@ import { ResetComponent } from './components/reset/reset.component';
     LoginComponent,
     HomeComponent,
     NavbarComponent,
-    PostComponent,
     ViewpageComponent,
+    ListUploadComponent,
+    DetailsUploadComponent,
+    FormUploadComponent,
     PostComponent,
+    FeedPageComponent,
     RegistrationComponent,
-    ResetComponent
+    ResetComponent,
+    FeedPostsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,10 +57,13 @@ import { ResetComponent } from './components/reset/reset.component';
     AuthService,
     AuthGuard,
     TrainerService,
-    PostService,
     HttpModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UploadFileService,
+    PostService,
+    ProfileService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
