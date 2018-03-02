@@ -1,0 +1,38 @@
+.view-posts {
+    margin-top: 40px;
+}
+
+.create-post {
+    margin-bottom: 70px;
+}
+
+.create-post textarea {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.post {
+    margin-bottom: 70px;
+}
+
+.post-desc {
+    border-radius: 10px;
+    width: 414px;
+}
+
+.post-time {
+    color: rgb(158, 158, 158);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.btn-like {
+    color: #007bff !important;
+    margin-left: -12px;
+    margin-top: -20px;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}

@@ -4,11 +4,22 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { AuthService } from './services/auth.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { TrainerService } from './services/trainer.service';
+import { PostService } from './services/post.service';
+import { PostComponent } from './components/post/post.component';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { ViewpageComponent } from './components/viewpage/viewpage.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { ResetComponent } from './components/reset/reset.component';
+
 
 
 @NgModule({
@@ -16,16 +27,29 @@ import { AuthService } from './services/auth.service';
     AppComponent,
     WelcomeComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
+    PostComponent,
+    ViewpageComponent,
+    PostComponent,
+    RegistrationComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    TrainerService,
+    PostService,
+    HttpModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })

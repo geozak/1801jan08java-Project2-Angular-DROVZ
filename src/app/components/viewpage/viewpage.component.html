@@ -1,0 +1,35 @@
+
+<div class="container">
+
+    <div class="header">
+      <h1 class="title">Pokebook</h1>
+    </div>
+
+   <!-- </ng-template>-->
+    <div class="user-info">
+    <div *ngIf="!viewTrainer.profilePhoto; then noPic else hasPic"></div>
+    <ng-template #hasPic >
+    <img src="{{ viewTrainer.profilePhoto }}" alt="" height="150" width="150" class="profile-img" />
+     </ng-template>
+     <ng-template #noPic >
+     <img src="{{ image }}" alt="" height="150" width="150" class="profile-img" />
+    </ng-template>
+        
+      <p>
+        {{ viewTrainer.firstName }} {{ viewTrainer.lastName }}<br />
+        {{ viewTrainer.email }}<br />
+        {{ viewTrainer.username }}<br />
+      </p>
+    </div>
+    
+  
+    
+    <div class="main">
+ 
+   
+      <app-post></app-post>
+   
+    </div> <!-- end .main -->
+  
+  </div> <!-- end .container -->
+  

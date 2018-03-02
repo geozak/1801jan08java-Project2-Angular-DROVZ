@@ -1,0 +1,28 @@
+.login-form {
+    width: 200px;
+    margin: 0 auto;
+    margin-top: 200px;
+}
+
+.login-form input {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+.btn-register, .btn-login {
+    color: #007bff !important;
+}
+
+.btn-reset {
+    margin-left: -12px;
+    margin-top: -12px;
+    margin-bottom: 20px;
+    color: #007bff !important;
+}
+
+.reset-password {
+    margin-bottom: 80px;
+}
+
