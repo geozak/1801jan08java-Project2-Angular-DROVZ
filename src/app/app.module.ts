@@ -24,6 +24,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { ResetComponent } from './components/reset/reset.component';
 import { FeedPostsComponent } from './components/feed-posts/feed-posts.component';
 import { ForgotService } from './services/forgot.service';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ForgotService } from './services/forgot.service';
     PostService,
     AuthGuard,
     ForgotService
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })
