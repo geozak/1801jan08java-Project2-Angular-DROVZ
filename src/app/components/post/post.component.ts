@@ -39,7 +39,7 @@ export class PostComponent implements OnInit {
     this.posts.push(postObj);
 
     // persist to db
-    const response = this.postService.newPost(postObj.trainer_id, postObj.post_desc);
+    const response = this.postService.newPost(postObj.trainer.id, postObj.post_desc);
 
     // subscribe
     response.subscribe(
