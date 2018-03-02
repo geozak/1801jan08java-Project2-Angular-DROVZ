@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="header">
-    <h1 class="title">Pokebook</h1>
+    <h1 class="title" routerLink='/feed-page'>Pokebook</h1>
     <nav class="nav">
       <a [routerLink]="['/login']">Logout</a>
     </nav>
@@ -38,22 +38,19 @@
     <div *ngIf=isEdit class="edit-user">
       <h2>EDIT PROFILE</h2>
       <div class="form-group">
-        <label for="firstName">First name</label>
         <input #firstName type="text" class="form-control" id="firstName" placeholder="First name">
       </div>
       <div class="form-group">
-        <label for="lastName">Last name</label>
         <input #lastName type="text" class="form-control" id="lastName" placeholder="Last name">
       </div>
       <div class="form-group">
-        <label for="username">Profile url</label>
-        <input #username type="text" class="form-control" id="url" placeholder="Profile url">
+        <input #url type="text" class="form-control" id="url" placeholder="Profile url">
       </div>
+      <p *ngIf=!this.validEmail class="alert alert-danger">Invalid email</p>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input #email type="email" class="form-control" id="email" placeholder="Email">
+        <input #email (blur)="validateEmail(email.value)" type="email" class="form-control" id="email" placeholder="Email">
       </div>
-      <button (click)="editUser(firstName.value, lastName.value, username.value, email.value); toggleEdit();" class="btn btn-primary btn-submit">Submit</button>
+      <button (click)="editUser(firstName.value, lastName.value, url.value, email.value); toggleEdit();" class="btn btn-primary btn-submit">Submit</button>
     </div> <!-- end .edit-user -->
 
     <input class="form-control search" type="text" placeholder="Search users">

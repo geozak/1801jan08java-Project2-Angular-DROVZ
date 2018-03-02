@@ -1,8 +1,8 @@
 import { Trainer } from './../../models/trainer';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
-import { UploadFileService } from '../../services/upload-file.service';
-
+import { UploadFileService } from '../../services/upload-file.service'
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit {
   currentFileUpload: File
   progress: { percentage: number } = { percentage: 0 }
 
-  constructor(private uploadService: UploadFileService) {
+  constructor(private profileService: ProfileService, private uploadService: UploadFileService) {
+    validEmail = true;
     this.currentTrainer = JSON.parse(localStorage.getItem('currentTrainer'));
     console.log(this.currentTrainer);
   }
@@ -30,17 +31,78 @@ export class HomeComponent implements OnInit {
     this.isEdit = !this.isEdit;
   }
 
-  editUser(firstName, lastName, username, email) {
+  validateEmail(email): void {
+    const regex = /[^@]+@[^@]+\.[a-zA-Z]{2,6}/;
+    this.validEmail = regex.test(email);
+  }
+
+  editUser(firstName, lastName, url, email) {
     if (firstName.trim() !== '') {
       this.currentTrainer.firstName = firstName;
+
+      // persist to db
+      const response = this.profileService.updateFirstName(this.currentTrainer.id, firstName);
+
+      // subscribe
+      response.subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
 
     if (lastName.trim() !== '') {
       this.currentTrainer.lastName = lastName;
+
+      // persist to db
+      const response = this.profileService.updateLastName(this.currentTrainer.id, lastName);
+
+      // subscribe
+      response.subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+
+    if (url.trim() !== '') {
+      this.currentTrainer.url = url;
+
+      // persist to db
+      const response = this.profileService.updateProfileURL(this.currentTrainer.id, url);
+
+      // subscribe
+      response.subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
 
     if (email.trim() !== '') {
       this.currentTrainer.email = email;
+
+      // persist to db
+      const response = this.profileService.updateEmail(this.currentTrainer.id, email);
+
+      // subscribe
+      response.subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 
