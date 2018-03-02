@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpRequest, HttpEvent} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import { domain } from '../globals';
  
 @Injectable()
 export class UploadFileService {
@@ -15,7 +16,8 @@ export class UploadFileService {
     const req = new HttpRequest('POST', 'http://localhost:8090/postPhoto.app', formdata, {
       headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
       reportProgress: true,
-      responseType: 'text'
+      responseType: 'text',
+      withCredentials: true
     });
  
     return this.http.request(req);
@@ -24,10 +26,10 @@ export class UploadFileService {
     let formdata: FormData = new FormData();
  
     formdata.append('file', file);
-    formdata.append('trainerId', `${trainerId}`);
  
-    const req = new HttpRequest('POST', 'http://localhost:8090/postPhoto.app', formdata, {
+    const req = new HttpRequest('POST', domain + '/postPhoto', formdata, {
       headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+      withCredentials: true,
       reportProgress: true,
       responseType: 'text'
     });

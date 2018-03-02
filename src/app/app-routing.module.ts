@@ -11,12 +11,12 @@ import { ResetComponent } from './components/reset/reset.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/feed-page', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   // { path: 'welcome', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  {path: 'view/:id', component: ViewpageComponent},
-  { path: 'feed-page', component: FeedPageComponent },
+  {path: 'view/:id', component: ViewpageComponent, canActivate: [AuthGuard]},
+  { path: 'feed-page', component: FeedPageComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegistrationComponent },
   { path: 'reset', component: ResetComponent },
   // otherwise redirect to home
