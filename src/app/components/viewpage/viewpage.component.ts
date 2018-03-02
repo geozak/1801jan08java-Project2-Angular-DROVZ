@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Hero } from '../../models/hero';
-import { HeroService } from '../../services/hero.service';
+import { TrainerService } from '../../services/trainer.service';
 import { ActivatedRoute } from '@angular/router';
+import { Trainer } from '../../models/trainer';
 
 @Component({
   selector: 'app-viewpage',
@@ -10,29 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewpageComponent implements OnInit {
 
-  @Input() hero: Hero;
-  public heroes: Hero[] = [];
-  public viewHeroe: Hero;
-  constructor(private heroService: HeroService, private route: ActivatedRoute ) {}
+  @Input() trainer: Trainer;
+  public trainers: Trainer[] = [];
+  public viewTrainer: Trainer;
+  constructor(private trainerService: TrainerService, private route: ActivatedRoute ) {}
 
   ngOnInit() {
-    this.getAllHeroes();
+    this.getTrainer();
   }
 
-  getHero(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+  getTrainer(): void {
+    const id = this.route.snapshot.paramMap.get('id');
     console.log('Getting id ' + id);
-    console.log('Getting length ' + this.heroes.length);
-    let i: number;
-    for (i = 0; i < this.heroes.length; i++ ) {
-      console.log('Test' + i);
-      if ( this.heroes[i].id === id ) {
-        console.log('Test2' + i);
-          this.viewHeroe = this.heroes[i];
-      }
-   }
+    this.trainerService.getTrainer(id).subscribe(
+      NewViewTrainer => this.viewTrainer = NewViewTrainer
+    );
   }
-
+/*
   getAllHeroes(): void {
     this.heroService.getAllHeroes().subscribe(
       Newheroes => this.heroes = Newheroes
@@ -41,6 +35,6 @@ export class ViewpageComponent implements OnInit {
     console.log('View test');
     console.log(this.heroes);
 
-  }
+  }*/
 
 }

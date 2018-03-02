@@ -11,7 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HeroService } from './services/hero.service';
+import { TrainerService } from './services/trainer.service';
 import { PostService } from './services/post.service';
 import { PostComponent } from './components/post/post.component';
 import { HttpModule } from '@angular/http';
@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewpageComponent } from './components/viewpage/viewpage.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ResetComponent } from './components/reset/reset.component';
+
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import { ResetComponent } from './components/reset/reset.component';
   providers: [
     AuthService,
     AuthGuard,
-    HeroService,
+    TrainerService,
     PostService,
     HttpModule,
     HttpClientModule,

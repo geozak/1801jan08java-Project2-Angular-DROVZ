@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroService } from '../../services/hero.service';
-import { Hero } from '../../models/hero';
+import { TrainerService } from '../../services/trainer.service';
+import { Trainer } from '../../models/trainer';
 
 
 
@@ -11,34 +11,34 @@ import { Hero } from '../../models/hero';
 })
 export class NavbarComponent implements OnInit {
   profileName: String;
-  public heroes: Hero[] = [];
-  public currHeroes: Hero;
+  public trainers: Trainer[] = [];
+  public currTrainer: Trainer;
   image = 'assets/images/Pokeball.jpg';
 
-  constructor(private heroService: HeroService) { }
+  constructor(private trainerService: TrainerService) { }
 
 
   ngOnInit() {
-    this.getAllHeroes();
+    this.getAllTrainers();
   }
 
  findUser(input: string): void {
   let i: number;
-  for (i = 0; i < this.heroes.length; i++ ) {
-     if ( this.heroes[i].name === input || String(this.heroes[i].id) === input ) {
-         this.currHeroes = this.heroes[i];
-         // console.log(this.currHeroes.name.length)
+  for (i = 0; i < this.trainers.length; i++ ) {
+     if ( this.trainers[i].firstName === input || String(this.trainers[i].id) === input ||
+     this.trainers[i].lastName === input || this.trainers[i].email === input ) {
+         this.currTrainer = this.trainers[i];
      }
   }
  }
 
- deselectHero(): void {
-  this.currHeroes = null;
+ deselectTrainer(): void {
+  this.currTrainer = null;
  }
 
-  getAllHeroes(): void {
-    this.heroService.getAllHeroes().subscribe(
-      Newheroes => this.heroes = Newheroes
+  getAllTrainers(): void {
+    this.trainerService.getAllTrainers().subscribe(
+      Newtrainer => this.trainers = Newtrainer
     );
 
 
