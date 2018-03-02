@@ -21,6 +21,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ResetComponent } from './components/reset/reset.component';
     AuthGuard,
     UploadFileService,
     PostService,
+    ProfileService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

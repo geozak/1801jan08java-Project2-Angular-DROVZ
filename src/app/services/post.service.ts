@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../models/post';
+import { domain } from '../globals';
 
 @Injectable()
 export class PostService {
@@ -9,6 +10,16 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   getPosts(): Post[] {
+    console.log('getting posts');
+
+    // return this.http.get<any>(domain + '/getPosts', formdata,
+    //   { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+    //   .map(data => {
+    //     console.log('mapping:');
+    //     console.log(data);
+    //     return data;
+    //   });
+
     return [{
         post_id: 1,
         post_desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
@@ -31,8 +42,52 @@ export class PostService {
     ];
   }
 
-  newPost(post_desc: string, trainer_id: number): Observable<string> {
-    return;
+  newPost(trainer_id: number, post_desc: string): Observable<string> {
+    console.log('creating new post');
+
+    const formdata: FormData = new FormData();
+    formdata.append('author', trainer_id.toString());
+    formdata.append('post', post_desc);
+
+    return this.http.post<any>(domain + '/createPost', formdata,
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      .map(message => {
+        console.log('mapping:');
+        console.log(message);
+        return message.message;
+      });
+  }
+
+  like(postID: number, likerID: number): Observable<string> {
+    console.log('liking');
+
+    const formdata: FormData = new FormData();
+    formdata.append('postID', postID.toString());
+    formdata.append('likerID', likerID.toString());
+
+    return this.http.post<any>(domain + '/like', formdata,
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      .map(message => {
+        console.log('mapping:');
+        console.log(message);
+        return message.message;
+      });
+  }
+
+  unlike(postID: number, likerID: number): Observable<string> {
+    console.log('unliking');
+
+    const formdata: FormData = new FormData();
+    formdata.append('postID', postID.toString());
+    formdata.append('likerID', likerID.toString());
+
+    return this.http.post<any>(domain + '/unlike', formdata,
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      .map(message => {
+        console.log('mapping:');
+        console.log(message);
+        return message.message;
+      });
   }
 
   get(id: number): Observable<string> {
@@ -52,14 +107,6 @@ export class PostService {
   }
 
   addPhoto(id: number, filePath: string): Observable<string> {
-    return;
-  }
-
-  like(postID: number, userID: number): Observable<string> {
-    return;
-  }
-
-  unlike(postID: number, userID: number): Observable<string> {
     return;
   }
 }
