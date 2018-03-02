@@ -43,8 +43,6 @@ getTrainer(url: string): Observable<Trainer> {
 
   return this.http2.post<Trainer>(domain + '/getTrainerByUrl', formdata)
       .map(trainer => {
-        console.log('mapping:');
-        console.log(trainer);
         return trainer;
       });
 }

@@ -13,6 +13,7 @@ export class ViewpageComponent implements OnInit {
   @Input() trainer: Trainer;
   public trainers: Trainer[] = [];
   public viewTrainer: Trainer;
+  image = 'assets/images/profile.jpg';
   constructor(private trainerService: TrainerService, private route: ActivatedRoute ) {}
 
   ngOnInit() {

@@ -13,9 +13,12 @@ export class NavbarComponent implements OnInit {
   profileName: String;
   public trainers: Trainer[] = [];
   public currTrainer: Trainer;
+  public mainTrainer: Trainer;
   image = 'assets/images/Pokeball.jpg';
 
-  constructor(private trainerService: TrainerService) { }
+  constructor(private trainerService: TrainerService) {
+    this.mainTrainer = JSON.parse(localStorage.getItem('currentTrainer'));
+   }
 
 
   ngOnInit() {
