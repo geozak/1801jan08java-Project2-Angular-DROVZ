@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private profileService: ProfileService, private uploadService: UploadFileService) {
     this.currentTrainer = JSON.parse(localStorage.getItem('currentTrainer'));
-    console.log(this.currentTrainer);
   }
 
   ngOnInit() {
