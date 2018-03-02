@@ -30,9 +30,9 @@
                         <li><a routerLink="/login">Logout</a></li>
                     </ol>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a routerLink="">Feed</a></li>
+                        <li><a routerLink="feed-page">Feed</a></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul *ngIf="mainTrainer" class="nav navbar-nav navbar-right">
                         <li><a routerLink="/view/{{mainTrainer.url}}">View Profile</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

@@ -56,7 +56,9 @@ export class PostService {
     formdata.append('post', post_desc);
 
     return this.http.post<any>(domain + '/createPost', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+        withCredentials: true
+    })
       .map(message => {
         console.log('mapping:');
         console.log(message);
@@ -72,7 +74,9 @@ export class PostService {
     formdata.append('likerID', likerID.toString());
 
     return this.http.post<any>(domain + '/like', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+        withCredentials: true
+    })
       .map(message => {
         console.log('mapping:');
         console.log(message);
@@ -88,7 +92,9 @@ export class PostService {
     formdata.append('likerID', likerID.toString());
 
     return this.http.post<any>(domain + '/unlike', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+        withCredentials: true
+    })
       .map(message => {
         console.log('mapping:');
         console.log(message);

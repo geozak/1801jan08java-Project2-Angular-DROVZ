@@ -22,10 +22,10 @@
       
     </div> -->
     <div (mouseleave)="isHovered = false" (mouseenter)="isHovered = true" class="containIm">
-        <img *ngIf=currentTrainer.profilePictureUrl src="{{currentTrainer.profilePictureUrl}}">
-        <img *ngIf=!currentTrainer.profilePictureUrl src="https://www.atomix.com.au/media/2015/06/atomix_user31.png">
+        <img *ngIf=currentTrainer.profilePictureUrl src="{{currentTrainer.profilePictureUrl}}" height="150" width="150" class="profile-img">
+        <img *ngIf=!currentTrainer.profilePictureUrl src="https://www.atomix.com.au/media/2015/06/atomix_user31.png" height="150" width="150" class="profile-img">
         <input *ngIf=isHovered class="inp" id ="fileName" type="file" (change)="selectFile($event)" accept="image/*">
-      </div>
+    </div>
     <p>
       {{ currentTrainer.firstName }} &nbsp; &nbsp; &nbsp;{{ currentTrainer.lastName }}<br />
       {{ currentTrainer.email }}<br />
