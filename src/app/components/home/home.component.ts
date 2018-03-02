@@ -17,9 +17,9 @@ export class HomeComponent implements OnInit {
   selectedFiles: FileList
   currentFileUpload: File
   progress: { percentage: number } = { percentage: 0 }
+  validEmail = true;
 
   constructor(private profileService: ProfileService, private uploadService: UploadFileService) {
-    validEmail = true;
     this.currentTrainer = JSON.parse(localStorage.getItem('currentTrainer'));
     console.log(this.currentTrainer);
   }
