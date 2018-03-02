@@ -31,7 +31,7 @@ export class PostComponent implements OnInit {
     const postObj: Post = {
       post_id: this.posts.length + 1,
       post_desc: post,
-      trainer_id: JSON.parse(localStorage.getItem('currentTrainer')).id,
+      trainer: JSON.parse(localStorage.getItem('currentTrainer')),
       post_timestamp: new Date().toString(),
       likers_id: []
     };

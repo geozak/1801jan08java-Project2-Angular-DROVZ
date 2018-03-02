@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ForgotService } from '../../services/forgot.service';
 
 @Component({
   selector: 'app-reset',
@@ -7,13 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./reset.component.css']
 })
 export class ResetComponent implements OnInit {
+  email: string;
 
-  constructor() { }
+  constructor(private forgotService: ForgotService) { }
 
   ngOnInit() {
   }
 
-  resetPassword(): void {
+  forgotPassword(): void {
     // do stuff
   }
 
