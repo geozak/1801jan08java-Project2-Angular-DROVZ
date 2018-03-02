@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ForgotService } from '../../services/forgot.service';
 
@@ -8,6 +8,7 @@ import { ForgotService } from '../../services/forgot.service';
   templateUrl: './reset.component.html',
   styleUrls: ['./reset.component.css']
 })
+
 export class ResetComponent implements OnInit {
   email: string;
 
