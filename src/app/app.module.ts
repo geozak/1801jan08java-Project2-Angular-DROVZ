@@ -23,6 +23,7 @@ import { FeedPageComponent } from './components/feed-page/feed-page.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { FeedPostsComponent } from './components/feed-posts/feed-posts.component';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { FeedPostsComponent } from './components/feed-posts/feed-posts.component
     AuthGuard,
     UploadFileService,
     PostService,
+    ProfileService,
     AuthGuard
   ],
   bootstrap: [AppComponent]
