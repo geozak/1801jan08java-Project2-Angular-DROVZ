@@ -30,21 +30,6 @@ export class AuthService {
 
         return trainer;
       });
-    // return this.http.post<Trainer | null>(domain + '/login', formdata,
-    //   {
-    //     headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
-    //     withCredentials: true
-    //   })
-    //     .map(trainer => {
-    //       console.log('mapping:');
-    //       console.log(trainer);
-    //       if (trainer) {
-    //         console.log('saving trainer');
-    //         localStorage.setItem('currentTrainer', JSON.stringify(trainer));
-    //       }
-
-    //       return trainer;
-    //     });
   }
 
   // string will be one of { "success", "inputs", "url", "email", "other" }

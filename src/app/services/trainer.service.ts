@@ -32,6 +32,7 @@ export class TrainerService {
         }
       )
         .map((response: Response) => {
+            console.log(response);
             return response;
         })
         .catch(this.handleError);
