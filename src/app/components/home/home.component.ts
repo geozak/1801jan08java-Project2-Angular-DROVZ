@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { UploadFileService } from '../../services/upload-file.service'
 import { ProfileService } from '../../services/profile.service';
+import { TrainerService } from '../../services/trainer.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 }
   validEmail = true;
 
-  constructor(private profileService: ProfileService, private uploadService: UploadFileService) {
+  constructor(private profileService: ProfileService, private uploadService: UploadFileService, private trainerService: TrainerService) {
     this.currentTrainer = JSON.parse(localStorage.getItem('currentTrainer'));
   }
 
@@ -122,7 +123,7 @@ upload() {
   this.progress.percentage = 0;
   console.log("got here");
   this.currentFileUpload = this.selectedFiles.item(0)
-  this.uploadService.updateTrainerPhoto(this.currentFileUpload, this.currentTrainer.id).subscribe(event => {
+  this.trainerService.updateTrainerPhoto(this.currentFileUpload).subscribe(event => {
     if (event.type === HttpEventType.UploadProgress) {
       this.progress.percentage = Math.round(100 * event.loaded / event.total);
     } else if (event instanceof HttpResponse) {

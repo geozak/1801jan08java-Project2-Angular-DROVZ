@@ -14,7 +14,9 @@ export class ViewpageComponent implements OnInit {
   public trainers: Trainer[] = [];
   public viewTrainer: Trainer;
   image = 'assets/images/profile.jpg';
-  constructor(private trainerService: TrainerService, private route: ActivatedRoute ) {}
+  constructor(private trainerService: TrainerService, private route: ActivatedRoute ) {
+  
+  }
 
   ngOnInit() {
     this.getTrainer();
@@ -24,18 +26,9 @@ export class ViewpageComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Getting id ' + id);
     this.trainerService.getTrainer(id).subscribe(
-      NewViewTrainer => this.viewTrainer = NewViewTrainer
+      (NewViewTrainer) => {this.viewTrainer = NewViewTrainer;
+      }
     );
   }
-/*
-  getAllHeroes(): void {
-    this.heroService.getAllHeroes().subscribe(
-      Newheroes => this.heroes = Newheroes
-    );
-    this.getHero();
-    console.log('View test');
-    console.log(this.heroes);
-
-  }*/
 
 }
