@@ -36,6 +36,7 @@ export class UploadFileService {
  
     return this.http.request(req);
   }
+
   getFiles(): Observable<Object> {
     return this.http.get('/getallfiles')
   }
