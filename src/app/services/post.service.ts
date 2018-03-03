@@ -4,11 +4,12 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Post } from '../models/post';
 import { domain } from '../globals';
 import { HttpEvent } from '@angular/common/http/src/response';
+import { AjaxService } from './ajax.service';
 
 @Injectable()
 export class PostService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private ajax: AjaxService) { }
 
   getPosts(): Post[] {
     console.log('getting posts');
@@ -24,18 +25,30 @@ export class PostService {
   }
 
   uploadPost(file: File, message: string): Observable<HttpEvent<{}>> {
+    // let formdata: FormData = new FormData();
+ 
+    // formdata.append('file', file);
+    // formdata.append('message', message);
+ 
+    // const req = new HttpRequest('POST', domain + '/addPost', formdata, {
+    //   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+    //   withCredentials: true,
+    //   reportProgress: true
+    // });
+    // console.log("got here")
+    // return this.http.request(req);
+
     let formdata: FormData = new FormData();
  
     formdata.append('file', file);
     formdata.append('message', message);
- 
-    const req = new HttpRequest('POST', domain + '/addPost', formdata, {
+    
+    return this.http.request(new HttpRequest('POST', domain + '/addPost', formdata, {
       headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
       withCredentials: true,
-      reportProgress: true
-    });
-    console.log("got here")
-    return this.http.request(req);
+      reportProgress: true,
+      responseType: 'text'
+    }));
   }
 
   like(postID: number, likerID: number): Observable<string> {
@@ -78,17 +91,19 @@ export class PostService {
     return;
   }
 
-  getAllbyTrainer(id: number): Observable<Post> {
+  getAllbyTrainer(id: number): Observable<Post[]> {
     let formdata: FormData = new FormData();
  
     formdata.append('id', `${id}`);
  
-    const req = new HttpRequest('POST', domain + '/addPost', formdata, {
-      headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
-      withCredentials: true
-    });
-    console.log("got here")
-    return this.http.request(req);
+    return this.ajax.postForObject<Post[]>('/getAllPosts', formdata)
+    // const req = new HttpRequest('POST', domain + '/addPost', formdata, {
+    //   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+    //   withCredentials: true
+    // });
+    // console.log("got here")
+    
+    // return this.http.request(req);
   }
 
   getAll(): Observable<string> {

@@ -23,7 +23,7 @@ export class PostComponent implements OnInit {
   }
 
   getPosts(): void {
-    this.posts = this.postService.getPosts();
+    this.postService.getAllbyTrainer(JSON.parse(localStorage.getItem('currentTrainer')).id).subscribe(r=>this.posts = r);
   }
 
   createPost(post: string): void {
@@ -46,7 +46,7 @@ export class PostComponent implements OnInit {
       } else if (event instanceof HttpResponse) {
         console.log(<string>event.body);
         console.log('File is completely uploaded!');
-        this.posts = this.postService.getAllbyTrainer(localStorage.getItem('currentTrainer').id);
+        this.getPosts();
         this.loading = false;
       }else{
         this.loading=false;
