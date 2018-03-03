@@ -27,6 +27,9 @@ import { ResetComponent } from './components/reset/reset.component';
 import { FeedPostsComponent } from './components/feed-posts/feed-posts.component';
 import { ForgotService } from './services/forgot.service';
 import { ProfileService } from './services/profile.service';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { CreateTokenComponent } from './components/create-token/create-token.component';
+import { EnterTokenComponent } from './components/enter-token/enter-token.component';
 
 
 
@@ -45,7 +48,10 @@ import { ProfileService } from './services/profile.service';
     FeedPageComponent,
     RegistrationComponent,
     ResetComponent,
-    FeedPostsComponent
+    FeedPostsComponent,
+    ChangePasswordComponent,
+    CreateTokenComponent,
+    EnterTokenComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +70,7 @@ import { ProfileService } from './services/profile.service';
     UploadFileService,
     PostService,
     AuthGuard,
-    ForgotService
+    ForgotService,
     ProfileService
   ],
   bootstrap: [AppComponent]

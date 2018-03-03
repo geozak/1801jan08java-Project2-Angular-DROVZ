@@ -10,15 +10,11 @@ import { ForgotService } from '../../services/forgot.service';
 })
 
 export class ResetComponent implements OnInit {
-  email: string;
 
-  constructor(private forgotService: ForgotService) { }
+  constructor(
+  ) { }
 
   ngOnInit() {
-  }
-
-  forgotPassword(): void {
-    // do stuff
   }
 
 }

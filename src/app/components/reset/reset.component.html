@@ -1,10 +1,6 @@
 <div class="reset-password">
-  <h3>Forgot Password</h3>
-  <div class="form-group">
-    <input [(ngModel)]="email" type="email" placeholder="Email" required />
-  </div>
-<!--   <div class="form-group">
-    <input #password type="text" class="form-control" id="username" placeholder="New password">
-  </div> -->
-  <button (click)="forgotPassword()" class="btn btn-primary btn-update">Forgot</button>
+  <h3>Forgot Password?</h3>
+  <button routerLink='/create-token' class="btn btn-primary btn-update">Generate Token</button>
+  <button routerLink='/enter-token' class="btn btn-primary btn-update">Enter Token</button>
+  <button routerLink='/login' class="btn btn-primary btn-update">Back To Login</button>
 </div>
