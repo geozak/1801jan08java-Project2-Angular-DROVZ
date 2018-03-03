@@ -19,7 +19,10 @@ export class AuthService {
     formdata.append('password', password);
 
     return this.http.post<Trainer | null>(domain + '/login', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'})})
+      { 
+        headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+        withCredentials: true
+      })
         .map(trainer => {
           console.log('mapping:');
           console.log(trainer);
@@ -42,6 +45,8 @@ export class AuthService {
     formdata.append('lastName', lastName);
     formdata.append('email', email);
     formdata.append('password', password);
+    formdata.append('profilePhotoUrl', 'http://www.pgconnects.com'
+    + '/helsinki/wp-content/uploads/sites/3/2015/07/generic-profile-grey-380x380.jpg');
 
     return this.http.post<any>(domain + '/register', formdata,
       { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })

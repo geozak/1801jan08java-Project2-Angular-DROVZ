@@ -1,10 +1,10 @@
 <div class="reset-password">
-  <h2>Reset Password</h2>
+  <h3>Forgot Password</h3>
   <div class="form-group">
-    <input #email type="text" class="form-control" id="email" placeholder="Email">
+    <input [(ngModel)]="email" type="email" name="email" placeholder="Email" ngModel required />
   </div>
-  <div class="form-group">
+<!--   <div class="form-group">
     <input #password type="text" class="form-control" id="username" placeholder="New password">
-  </div>
-  <button (click)="resetPassword()" class="btn btn-primary btn-update">Update</button>
+  </div> -->
+  <button (click)="forgotPassword()" class="btn btn-primary btn-update">Forgot</button>
 </div>

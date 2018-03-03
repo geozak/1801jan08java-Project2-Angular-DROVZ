@@ -8,9 +8,40 @@
     margin-bottom: 70px;
 }
 
-.btn-edit {
+.btn-edit, .btn-upload {
     color: #007bff !important;
     padding: 2px 0;
+}
+
+.containIm {
+    position: relative;
+    width: 50%;
+  }
+  
+  /* Make the image responsive */
+  .containIm img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Style the button and place it in the middle of the container/image */
+  .containIm .inp {
+    position: absolute;
+    bottom: 0%;
+    padding: 5px, 0, 5px,0
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    padding: 12px 24px; */
+  }
+  
+  .container .inp:hover {
+    background-color: rgba(61, 61, 61, 0.8);
+  }
+
+.btn-upload {
+    margin-top: -7px;
 }
 
 .nav { 
@@ -39,6 +70,7 @@
 
 .profile-img {
     display: block;
-    border: 1px solid #000;
-    border-radius: 10px;
+    border: 1px solid #ccc;
+    border-radius: 80px;
+    margin-bottom: 10px;
 }
