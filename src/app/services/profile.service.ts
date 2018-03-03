@@ -16,7 +16,9 @@ export class ProfileService {
     formdata.append('firstName', firstName.toString());
 
     return this.http.post<any>(domain + '/updateFirstName', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+        withCredentials: true
+      })
       .map(message => {
         console.log('mapping:');
         console.log(message);
@@ -32,7 +34,9 @@ export class ProfileService {
     formdata.append('lastName', lastName.toString());
 
     return this.http.post<any>(domain + '/updateLastName', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+        withCredentials: true
+    })
       .map(message => {
         console.log('mapping:');
         console.log(message);
@@ -48,7 +52,9 @@ export class ProfileService {
     formdata.append('url', url.toString());
 
     return this.http.post<any>(domain + '/updateUrl', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+        withCredentials: true
+    })
       .map(message => {
         console.log('mapping:');
         console.log(message);
@@ -64,7 +70,9 @@ export class ProfileService {
     formdata.append('email', email.toString());
 
     return this.http.post<any>(domain + '/updateEmail', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+        withCredentials: true
+    })
       .map(message => {
         console.log('mapping:');
         console.log(message);

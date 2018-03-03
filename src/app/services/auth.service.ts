@@ -19,7 +19,10 @@ export class AuthService {
     formdata.append('password', password);
 
     return this.http.post<Trainer | null>(domain + '/login', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'})})
+      { 
+        headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+        withCredentials: true
+      })
         .map(trainer => {
           console.log('mapping:');
           console.log(trainer);
