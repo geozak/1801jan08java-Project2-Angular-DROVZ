@@ -110,8 +110,10 @@ export class HomeComponent implements OnInit {
     var fileName = (<HTMLInputElement>(document.getElementById("fileName"))).value;
     var idxDot = fileName.lastIndexOf(".") + 1;
     var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    console.log('got here first')
     if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" || extFile=="gif"){
       this.selectedFiles = event.target.files;
+      console.log('got here first')
       this.upload();
     }else{
         alert("Only jpg/jpeg and png files are allowed!");
@@ -119,7 +121,7 @@ export class HomeComponent implements OnInit {
 }
 upload() {
   this.progress.percentage = 0;
-
+  console.log("got here");
   this.currentFileUpload = this.selectedFiles.item(0)
   this.trainerService.updateTrainerPhoto(this.currentFileUpload).subscribe(event => {
     if (event.type === HttpEventType.UploadProgress) {
