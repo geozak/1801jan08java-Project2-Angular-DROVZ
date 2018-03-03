@@ -1,3 +1,4 @@
+import { AjaxService } from './services/ajax.service';
 import { AuthGuard } from './guards/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,6 @@ import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TrainerService } from './services/trainer.service';
 import {DetailsUploadComponent} from './components/details-upload/details-upload.component';
-import {FormUploadComponent} from './components/form-upload/form-upload.component';
 import {ListUploadComponent} from './components/list-upload/list-upload.component';
 import {UploadFileService} from './services/upload-file.service';
 import { PostService } from './services/post.service';
@@ -39,7 +39,6 @@ import { ProfileService } from './services/profile.service';
     ViewpageComponent,
     ListUploadComponent,
     DetailsUploadComponent,
-    FormUploadComponent,
     PostComponent,
     FeedPageComponent,
     RegistrationComponent,
@@ -63,7 +62,8 @@ import { ProfileService } from './services/profile.service';
     UploadFileService,
     PostService,
     ProfileService,
-    AuthGuard
+    AuthGuard,
+    AjaxService
   ],
   bootstrap: [AppComponent]
 })
