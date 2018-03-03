@@ -1,3 +1,4 @@
+import { AjaxService } from './services/ajax.service';
 import { AuthGuard } from './guards/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -47,7 +48,8 @@ import { ResetComponent } from './components/reset/reset.component';
     AuthGuard,
     UploadFileService,
     PostService,
-    AuthGuard
+    AuthGuard,
+    AjaxService
   ],
   bootstrap: [AppComponent]
 })
