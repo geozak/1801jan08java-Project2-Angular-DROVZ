@@ -29,6 +29,11 @@ export class ViewpageComponent implements OnInit {
 
   ngOnInit() {
     this.getTrainer();
+    this.route.url.subscribe(
+      data => {
+        this.getTrainer();
+      }
+    );
   }
 
   getTrainer(): void {

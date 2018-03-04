@@ -28,6 +28,7 @@ import { ProfileService } from './services/profile.service';
 import { CreateTokenComponent } from './components/create-token/create-token.component';
 import { EnterTokenComponent } from './components/enter-token/enter-token.component';
 import { PostdetailComponent } from './components/postdetail/postdetail.component';
+import { FeedPostDetailComponent } from './components/feed-post-detail/feed-post-detail.component';
 
 
 
@@ -48,7 +49,8 @@ import { PostdetailComponent } from './components/postdetail/postdetail.componen
     FeedPostsComponent,
     CreateTokenComponent,
     EnterTokenComponent,
-    PostdetailComponent
+    PostdetailComponent,
+    FeedPostDetailComponent
   ],
   imports: [
     BrowserModule,
