@@ -1,3 +1,4 @@
+import { Post } from './../../models/post';
 import { Trainer } from './../../models/trainer';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,12 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedPostsComponent implements OnInit {
 
-  trainers: Trainer[];
+  trainers: Trainer[] = [];
+  posts: Post[] = [];
 
   constructor() { }
 
   ngOnInit() {
-    // grab all the trainers to link them to their posts
   }
 
 }
