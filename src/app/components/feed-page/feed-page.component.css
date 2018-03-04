@@ -39,6 +39,7 @@
 
 .profile-img {
     display: block;
-    border: 1px solid #000;
-    border-radius: 10px;
+    border: 1px solid #ccc;
+    border-radius: 80px;
+    margin-bottom: 10px;
 }

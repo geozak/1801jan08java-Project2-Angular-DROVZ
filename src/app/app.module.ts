@@ -29,6 +29,7 @@ import { CreateTokenComponent } from './components/create-token/create-token.com
 import { EnterTokenComponent } from './components/enter-token/enter-token.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { PostdetailComponent } from './components/postdetail/postdetail.component';
+import { FeedPostDetailComponent } from './components/feed-post-detail/feed-post-detail.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { PostdetailComponent } from './components/postdetail/postdetail.componen
     CreateTokenComponent,
     ChangePasswordComponent,
     EnterTokenComponent,
-    PostdetailComponent
+    PostdetailComponent,
+    FeedPostDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<a routerLink='/view/{{post.creator.url}}' class="">
+  <img src="{{profilePicture}}" height="60" width="60" class="profile-thumbnail" />
+</a>
+<p class="post-time">Created On: {{post.added}}</p>
+<p>
+  Created By:&nbsp; {{ post.creator.firstName }} {{ post.creator.lastName }}
+</p>
+<p class="post-desc">{{post.text}}</p>
+<a (click)="likePost(post)" class="btn btn-link btn-like">Like {{post.likedBy.length}}</a>
+<ul>
+  <li *ngFor="let photo of post.postPhotos">
+    <img src="{{photo.url}}" />
+  </li>
+</ul>
