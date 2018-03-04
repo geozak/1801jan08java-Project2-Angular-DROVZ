@@ -5,15 +5,15 @@
     <form #f="ngForm" (ngSubmit)="f.form.valid && login(f)">
       <input type="email" name="email" placeholder="Email" ngModel required /><br />
       <input type="password" name="password" placeholder="Password" ngModel required />
-      <a routerLink="/reset" class="btn btn-link btn-reset" >Reset Password</a>
+      <a routerLink="/reset" class="btn btn-link btn-reset" >Forgot Password</a>
 
-      <i *ngIf="loading" class="fa fa-spinner fa-spin" style="font-size:24px"></i><br />
       <button [disabled]=this.loading class="btn btn-primary">
           <ng-container *ngIf="loading">
               <i class="fa fa-spinner fa-spin" style="font-size:18px"></i>
               &nbsp;
           </ng-container>
-        Login</button>
+        Login
+      </button>
 
       <a routerLink="/register" class="btn btn-link btn-register">Register</a>
     </form>
