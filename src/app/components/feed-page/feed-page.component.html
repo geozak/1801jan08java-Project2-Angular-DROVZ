@@ -1,16 +1,11 @@
 <div class="container">
-
-  <div class="header">
-    <h1 routerLink='/feed-page' class="title">Pokebook</h1>
-    <nav class="nav">
-      <a [routerLink]="['/login']">Logout</a>
-    </nav>
-  </div>
-
   <div class="user-info">
     <a routerLink='/home' class="">
-      <img src="{{ currentTrainer.profilePictureUrl }}" alt="" height="75" width="75" class="profile-img" />
+      <img src="{{profilePicture}}" height="75" width="75" class="profile-img">
     </a>
+    <p>
+      {{ currentTrainer.firstName }} &nbsp;{{ currentTrainer.lastName }}
+    </p>
   </div>
 
   <div class="main">

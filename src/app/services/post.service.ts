@@ -146,7 +146,7 @@ export class PostService {
  
     formdata.append('id', `${id}`);
  
-    return this.ajax.postForObject<Post[]>('/getAllPosts', formdata)
+    return this.ajax.postForObject<Post[]>('/getAllPostsByTrainerId', formdata);
     // const req = new HttpRequest('POST', domain + '/addPost', formdata, {
     //   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
     //   withCredentials: true

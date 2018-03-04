@@ -8,9 +8,8 @@
    <!-- </ng-template>-->
     <div class="user-info">
    
-    <img *ngIf="viewTrainer" src="{{ viewTrainer.profilePictureUrl }}" alt="" height="150" width="150" class="profile-img" />
+    <img *ngIf="viewTrainer.profilePictureUrl" src="{{ profilePicture }}" alt="" height="150" width="150" class="profile-img" />
     
-     <img *ngIf="!viewTrainer" src="{{ image }}" alt="" height="150" width="150" class="profile-img" />
       
       <p *ngIf="viewTrainer">
         {{ viewTrainer.firstName }} {{ viewTrainer.lastName }}<br />
