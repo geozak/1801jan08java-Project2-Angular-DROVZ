@@ -1,16 +1,13 @@
 <div class="container">
-
-  <div class="header">
-    <h1 routerLink='/feed-page' class="title">Pokebook</h1>
-    <nav class="nav">
-      <a [routerLink]="['/login']">Logout</a>
-    </nav>
-  </div>
-
   <div class="user-info">
     <a routerLink='/home' class="">
-      <img src="{{ currentTrainer.profilePictureUrl }}" alt="" height="75" width="75" class="profile-img" />
+      <img *ngIf=currentTrainer.profilePictureUrl src="{{currentTrainer.profilePictureUrl}}" height="75" width="75" class="profile-img">
+      <img *ngIf=!currentTrainer.profilePictureUrl src="https://www.atomix.com.au/media/2015/06/atomix_user31.png" height="75" width="75" class="profile-img">
     </a>
+    <p>
+      {{ currentTrainer.firstName }} &nbsp; &nbsp; &nbsp;{{ currentTrainer.lastName }}
+      <br />
+    </p>
   </div>
 
   <div class="main">
