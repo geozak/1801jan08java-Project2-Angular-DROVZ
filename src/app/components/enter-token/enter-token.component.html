@@ -1,0 +1,13 @@
+<div class="verify-token">
+  <h3>Token Verification</h3>
+  <p *ngIf=this.message class="alert alert-danger">{{ this.message }}</p>
+  <div class="form-group">
+    <input [(ngModel)]="email" type="email" placeholder="Enter Email" required />
+    <input [(ngModel)]="token" type="text" placeholder="Enter Token" required/>
+  </div>
+  <!--   <div class="form-group">
+      <input #password type="text" class="form-control" id="username" placeholder="New password">
+    </div> -->
+  <button (click)="verifyInformation()" class="btn btn-primary btn-update">Verify</button>
+  <button routerLink='/reset' class="btn btn-primary btn-update">Back</button>
+</div>
