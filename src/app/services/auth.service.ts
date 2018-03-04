@@ -1,3 +1,4 @@
+import { AjaxService } from './ajax.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -9,7 +10,7 @@ import { domain } from '../globals';
 @Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private ajax: AjaxService) { }
 
   login(email: string, password: string): Observable<Trainer | null> {
     console.log('logging in');
@@ -18,21 +19,17 @@ export class AuthService {
     formdata.append('email', email);
     formdata.append('password', password);
 
-    return this.http.post<Trainer | null>(domain + '/login', formdata,
-      { 
-        headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
-        withCredentials: true
-      })
-        .map(trainer => {
-          console.log('mapping:');
-          console.log(trainer);
-          if (trainer) {
-            console.log('saving trainer');
-            localStorage.setItem('currentTrainer', JSON.stringify(trainer));
-          }
+    return this.ajax.postForObject<Trainer>('/login', formdata)
+      .map(trainer => {
+        console.log('mapping:');
+        console.log(trainer);
+        if (trainer) {
+          console.log('saving trainer');
+          localStorage.setItem('currentTrainer', JSON.stringify(trainer));
+        }
 
-          return trainer;
-        });
+        return trainer;
+      });
   }
 
   // string will be one of { "success", "inputs", "url", "email", "other" }
@@ -48,13 +45,16 @@ export class AuthService {
     formdata.append('profilePhotoUrl', 'http://www.pgconnects.com'
     + '/helsinki/wp-content/uploads/sites/3/2015/07/generic-profile-grey-380x380.jpg');
 
-    return this.http.post<any>(domain + '/register', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
-      .map(message => {
-        console.log('mapping:');
-        console.log(message);
-        return message.message;
-      });
+    return this.ajax.postForStatus('/register', formdata);
+    // return this.http.post<any>(domain + '/register', formdata,
+    //   {
+    //     headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
+    //   })
+    //   .map(message => {
+    //     console.log('mapping:');
+    //     console.log(message);
+    //     return message.message;
+    //   });
   }
 
   logout(): void {

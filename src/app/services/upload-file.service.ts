@@ -1,12 +1,15 @@
+import { AjaxService } from './ajax.service';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpRequest, HttpEvent} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { domain } from '../globals';
- 
+
 @Injectable()
 export class UploadFileService {
- 
-  constructor(private http: HttpClient) {}
+
+  constructor(
+    private http: HttpClient,
+    private ajax: AjaxService) {}
  
   pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
@@ -36,7 +39,8 @@ export class UploadFileService {
  
     return this.http.request(req);
   }
+  
   getFiles(): Observable<Object> {
-    return this.http.get('/getallfiles')
+    return this.http.get('/getallfiles');
   }
 }
