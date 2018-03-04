@@ -7,18 +7,15 @@
 
    <!-- </ng-template>-->
     <div class="user-info">
-    <div *ngIf="!viewTrainer.profilePhoto; then noPic else hasPic"></div>
-    <ng-template #hasPic >
-    <img src="{{ viewTrainer.profilePhoto }}" alt="" height="150" width="150" class="profile-img" />
-     </ng-template>
-     <ng-template #noPic >
-     <img src="{{ image }}" alt="" height="150" width="150" class="profile-img" />
-    </ng-template>
-        
-      <p>
+   
+    <img *ngIf="viewTrainer" src="{{ viewTrainer.profilePictureUrl }}" alt="" height="150" width="150" class="profile-img" />
+    
+     <img *ngIf="!viewTrainer" src="{{ image }}" alt="" height="150" width="150" class="profile-img" />
+      
+      <p *ngIf="viewTrainer">
         {{ viewTrainer.firstName }} {{ viewTrainer.lastName }}<br />
         {{ viewTrainer.email }}<br />
-        {{ viewTrainer.username }}<br />
+        {{ viewTrainer.url }}<br />
       </p>
     </div>
     
