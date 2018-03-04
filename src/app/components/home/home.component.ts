@@ -1,11 +1,13 @@
+import { PostComponent } from './../post/post.component';
 import { Trainer } from './../../models/trainer';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { UploadFileService } from '../../services/upload-file.service';
 import { ProfileService } from '../../services/profile.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TrainerService } from '../../services/trainer.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +26,11 @@ export class HomeComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   validEmail = true;
 
+  updaterValue: number;
+  updater: Subject<number>;
+
   constructor(
+    private route: ActivatedRoute,
     private profileService: ProfileService,
     private uploadService: UploadFileService,
     private authService: AuthService,
@@ -33,6 +39,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.updaterValue = 0;
+    this.updater = new Subject<number>();
+    this.updater.next(this.updaterValue);
   }
 
   toggleEdit() {
@@ -74,6 +83,8 @@ export class HomeComponent implements OnInit {
               break;
           }
           this.loading = false;
+          this.updaterValue++;
+          this.updater.next(this.updaterValue);
         },
         error => {
           console.log(error);
@@ -89,7 +100,7 @@ export class HomeComponent implements OnInit {
     const extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
     if (extFile === 'jpg' || extFile === 'jpeg' || extFile === 'png' || extFile === 'gif' ) {
       this.selectedFiles = event.target.files;
-      console.log('got here first')
+      console.log('got here first');
       this.upload();
     } else {
         alert('Only jpg/jpeg and png files are allowed!');
@@ -99,7 +110,7 @@ export class HomeComponent implements OnInit {
 upload() {
   this.progress.percentage = 0;
   console.log('got here');
-  this.currentFileUpload = this.selectedFiles.item(0)
+  this.currentFileUpload = this.selectedFiles.item(0);
   this.trainerService.updateTrainerPhoto(this.currentFileUpload).subscribe(event => {
     if (event.type === HttpEventType.UploadProgress) {
       this.progress.percentage = Math.round(100 * event.loaded / event.total);
@@ -109,6 +120,8 @@ upload() {
       localStorage.setItem('currentTrainer', JSON.stringify(this.currentTrainer));
       console.log('File is completely uploaded!');
     }
+    this.updaterValue++;
+    this.updater.next(this.updaterValue);
   }
   , err => {
     console.log(err);

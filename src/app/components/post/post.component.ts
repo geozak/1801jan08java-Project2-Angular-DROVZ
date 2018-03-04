@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { Trainer } from '../../models/trainer';
 import { Photo } from '../../models/photo';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
+
 export class PostComponent implements OnInit {
   posts: Post[];
   lphotos: Photo[];
@@ -20,11 +22,18 @@ export class PostComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
 
+  @Input() updater: Subject<number>;
+
   constructor(private postService: PostService) { }
 
   ngOnInit() {
      this.getPosts();
    // this.getPostsByUrl(JSON.parse(localStorage.getItem('currentTrainer')).url);
+   this.updater.subscribe(
+     data => {
+       this.getPosts();
+     }
+   );
   }
 
   getPosts(): void {
