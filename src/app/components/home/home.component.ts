@@ -1,8 +1,10 @@
 import { Trainer } from './../../models/trainer';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
-import { UploadFileService } from '../../services/upload-file.service'
+import { UploadFileService } from '../../services/upload-file.service';
 import { ProfileService } from '../../services/profile.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 import { TrainerService } from '../../services/trainer.service';
 
 @Component({
@@ -14,13 +16,19 @@ export class HomeComponent implements OnInit {
   currentTrainer: Trainer;
   isEdit: Boolean = false;
   isHovered: Boolean = false;
+  loading = false;
+  message: string | null = null;
 
-  selectedFiles: FileList
-  currentFileUpload: File
-  progress: { percentage: number } = { percentage: 0 }
+  selectedFiles: FileList;
+  currentFileUpload: File;
+  progress: { percentage: number } = { percentage: 0 };
   validEmail = true;
 
-  constructor(private profileService: ProfileService, private uploadService: UploadFileService, private trainerService: TrainerService) {
+  constructor(
+    private profileService: ProfileService,
+    private uploadService: UploadFileService,
+    private authService: AuthService,
+    private trainerService: TrainerService) {
     this.currentTrainer = JSON.parse(localStorage.getItem('currentTrainer'));
   }
 
@@ -37,91 +45,60 @@ export class HomeComponent implements OnInit {
   }
 
   editUser(firstName, lastName, url, email) {
-    if (firstName.trim() !== '') {
-      this.currentTrainer.firstName = firstName;
+    this.loading = true;
+    this.message = null;
+    this.currentTrainer.firstName = firstName.trim();
+    this.currentTrainer.lastName = lastName.trim();
+    this.currentTrainer.url = url.trim();
+    this.currentTrainer.email = email.trim();
 
-      // persist to db
-      const response = this.profileService.updateFirstName(this.currentTrainer.id, firstName);
+    const response = this.authService.editUser(firstName, lastName, url, email);
 
-      // subscribe
       response.subscribe(
         data => {
           console.log(data);
+          switch (data) {
+            case 'success':
+              this.message = 'Success.';
+              return;
+            case 'inputs':
+              this.message = 'Invalid inputs.';
+              break;
+            case 'email':
+              this.message = 'Email alreaduy in use.';
+              break;
+            case 'url':
+            case 'other':
+            default:
+              this.message = 'Unable to create user.';
+              break;
+          }
+          this.loading = false;
         },
         error => {
           console.log(error);
+          this.message = 'Unknown error occured.';
+          this.loading = false;
         }
       );
     }
-
-    if (lastName.trim() !== '') {
-      this.currentTrainer.lastName = lastName;
-
-      // persist to db
-      const response = this.profileService.updateLastName(this.currentTrainer.id, lastName);
-
-      // subscribe
-      response.subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
-
-    if (url.trim() !== '') {
-      this.currentTrainer.url = url;
-
-      // persist to db
-      const response = this.profileService.updateProfileURL(this.currentTrainer.id, url);
-
-      // subscribe
-      response.subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
-
-    if (email.trim() !== '') {
-      this.currentTrainer.email = email;
-
-      // persist to db
-      const response = this.profileService.updateEmail(this.currentTrainer.id, email);
-
-      // subscribe
-      response.subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
-  }
 
   selectFile(event) {
-    var fileName = (<HTMLInputElement>(document.getElementById("fileName"))).value;
-    var idxDot = fileName.lastIndexOf(".") + 1;
-    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-    console.log('got here first')
-    if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" || extFile=="gif"){
+    const fileName = (<HTMLInputElement>(document.getElementById('fileName'))).value;
+    const idxDot = fileName.lastIndexOf('.') + 1;
+    const extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    if (extFile === 'jpg' || extFile === 'jpeg' || extFile === 'png' || extFile === 'gif' ) {
       this.selectedFiles = event.target.files;
       console.log('got here first')
       this.upload();
-    }else{
-        alert("Only jpg/jpeg and png files are allowed!");
+    } else {
+        alert('Only jpg/jpeg and png files are allowed!');
     }
 }
+
 upload() {
   this.progress.percentage = 0;
-  console.log("got here");
+  console.log('got here');
   this.currentFileUpload = this.selectedFiles.item(0)
   this.trainerService.updateTrainerPhoto(this.currentFileUpload).subscribe(event => {
     if (event.type === HttpEventType.UploadProgress) {
@@ -133,10 +110,12 @@ upload() {
       console.log('File is completely uploaded!');
     }
   }
-  , err => alert(err)
-)
+  , err => {
+    console.log(err);
+  }
+);
 
-  this.selectedFiles = undefined
+  this.selectedFiles = undefined;
 }
 
 }
