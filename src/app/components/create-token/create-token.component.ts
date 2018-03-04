@@ -25,7 +25,7 @@ export class CreateTokenComponent implements OnInit {
       data => {
         switch (data) {
           case 'success':
-          this.router.navigate(['enter-token']);
+            this.router.navigate(['/enter-token']);
             break;
           case 'email':
             this.message = 'Email Not Found';
