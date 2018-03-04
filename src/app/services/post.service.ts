@@ -14,18 +14,25 @@ export class PostService {
   public getPosts(): Observable<Post[]> {
     console.log('getting posts');
 
+    return this.ajax.getForObject<Post[]>('/getPosts');
+  //   return this.http
+  //   .get<Post[]>(domain + `/getPosts`,
+  //   {
+  //     headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+  //     withCredentials: true
+  //   }
+  // )
+  // .map((post: Post[]) => {
+  //   console.log(post);
+  //   return post;
+  //   });
 
-    return this.http
-    .get<Post[]>(domain + `/getPosts`,
-    {
-      headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
-      withCredentials: true
-    }
-  )
-  .map((post: Post[]) => {
-    console.log(post);
-    return post;
-    });
+  }
+
+  public getAllPosts(): Observable<Post[]> {
+    console.log('getting posts');
+
+    return this.ajax.getForObject<Post[]>('/getAllPosts');
 
   }
 
@@ -49,20 +56,22 @@ export class PostService {
 
   }
 
-  newPost(trainer_id: number, post_desc: string): Observable<string> {
+  // newPost(trainer_id: number, post_desc: string): Observable<string> {
+  newPost(post_desc: string): Observable<string> {
     console.log('creating new post');
 
     const formdata: FormData = new FormData();
-    formdata.append('author', trainer_id.toString());
+    // formdata.append('author', trainer_id.toString());
     formdata.append('post', post_desc);
 
-    return this.http.post<any>(domain + '/createPost', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
-      .map(message => {
-        console.log('mapping:');
-        console.log(message);
-        return message.message;
-      });
+    return this.ajax.postForStatus('/createPost', formdata);
+    // return this.http.post<any>(domain + '/createPost', formdata,
+    //   { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+    //   .map(message => {
+    //     console.log('mapping:');
+    //     console.log(message);
+    //     return message.message;
+    //   });
 }
 
   uploadPost(file: File, message: string): Observable<HttpEvent<{}>> {

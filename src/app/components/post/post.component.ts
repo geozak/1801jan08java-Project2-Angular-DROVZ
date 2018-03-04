@@ -53,34 +53,35 @@ export class PostComponent implements OnInit {
 
   createPost(post: string): void {
     this.loading = true;
-
-    post = post.trim();
-
-    this.loading = true;
     post = post.trim();
     if (!post) { return; }
 
-    const postObj: Post = {
-      id: this.posts.length + 1,
-      text: post,
-      // added: new Date().getTime,
-      added: 0,
-      creator: JSON.parse(localStorage.getItem('currentTrainer')),
-      postPhotos: this.lphotos,
-      likedBy: this.llikedBy
-    };
+    // const postObj: Post = {
+    //   id: this.posts.length + 1,
+    //   text: post,
+    //   // added: new Date().getTime,
+    //   added: 0,
+    //   creator: JSON.parse(localStorage.getItem('currentTrainer')),
+    //   postPhotos: this.lphotos,
+    //   likedBy: this.llikedBy
+    // };
 
-    this.posts.push(postObj);
+    // this.posts.push(postObj);
 
     // persist to db
-    const response = this.postService.newPost(postObj.creator.id, postObj.text);
+    // const response = this.postService.newPost(postObj.creator.id, postObj.text);
+    const response = this.postService.newPost(post);
 
     // subscribe
     response.subscribe(
       data => {
         console.log(data);
-        if (data === 'error') {
+        if (data === 'Failure') {
           this.message = 'There was an error saving the post.';
+        }
+        if (data === 'Success') {
+          this.message = null;
+          this.getPosts();
         }
 
         this.loading = false;
@@ -89,13 +90,14 @@ export class PostComponent implements OnInit {
         console.log(error);
         this.message = 'Unknown error occured.';
         this.loading = false;
-});
+      }
+    );
 
-    if (post || this.selectedFiles) {
+    // if (post || this.selectedFiles) {
 
-      // persist to db
-      this.upload(post);
-    }
+    //   // persist to db
+    //   this.upload(post);
+    // }
   }
 
   upload(message: string) {
