@@ -19,7 +19,12 @@ export class PostComponent implements OnInit {
   }
 
   getPosts(): void {
-    this.posts = this.postService.getPosts();
+    this.postService.getPosts().subscribe(
+      allPosts => {
+        this.posts = allPosts;
+        console.log(this.posts);
+      }
+    );
   }
 
   createPost(post: string): void {

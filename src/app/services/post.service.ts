@@ -9,18 +9,22 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  getPosts(): Post[] {
+  public getPosts(): Observable<Post[]> {
     console.log('getting posts');
 
-    // return this.http.get<any>(domain + '/getPosts', formdata,
-    //   { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
-    //   .map(data => {
-    //     console.log('mapping:');
-    //     console.log(data);
-    //     return data;
-    //   });
+    return this.http
+    .get<Post[]>(domain + `/getPosts`,
+    {
+      headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+      withCredentials: true
+    }
+  )
+  .map((post: Post[]) => {
+    console.log(post);
+    return post;
+    });
 
-    return [{
+    /*return [{
         post_id: 1,
         post_desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
         trainer: null,
@@ -45,7 +49,7 @@ export class PostService {
         post_timestamp: 'Thu Feb 22 2018 10:13:06 GMT-0500 (EST)',
         likers_id: []
       }
-    ];
+    ];*/
   }
 
   newPost(trainer_id: number, post_desc: string): Observable<string> {
