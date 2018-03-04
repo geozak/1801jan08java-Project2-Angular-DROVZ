@@ -1,6 +1,6 @@
 <div class="create-post">
   <h2>CREATE POST</h2>
-  <input class="inp" id ="fileName" type="file" (change)="selectFile($event)" accept="image/*">
+  <!-- <input class="inp" id ="fileName" type="file" (change)="selectFile($event)" accept="image/*"> -->
   <p *ngIf=this.message class="alert alert-danger">{{ this.message }}</p>
   <textarea #post rows="4" cols="42"></textarea><br />
   <button [disabled]=this.loading (click)="createPost(post.value); post.value=''" class="btn btn-primary btn-post">
