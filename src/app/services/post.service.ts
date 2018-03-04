@@ -42,17 +42,18 @@ export class PostService {
     const formdata: FormData = new FormData();
     formdata.append('url', url);
 
-    return this.http
-    .post<Post[]>(domain + `/getPostsByUrl`,  formdata,
-    {
-      headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
-      withCredentials: true
-    }
-  )
-  .map((post: Post[]) => {
-    console.log(post);
-    return post;
-    });
+    return this.ajax.postForObject<Post[]>('/getPostByUrl', formdata);
+    // return this.http
+    // .post<Post[]>(domain + `/getPostsByUrl`,  formdata,
+    // {
+    //   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+    //   withCredentials: true
+    // }
+  // )
+  // .map((post: Post[]) => {
+  //   console.log(post);
+  //   return post;
+  //   });
 
   }
 

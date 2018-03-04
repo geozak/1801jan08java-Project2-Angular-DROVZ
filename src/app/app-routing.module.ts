@@ -17,7 +17,7 @@ const routes: Routes = [
   // { path: 'welcome', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  {path: 'view/:id', component: ViewpageComponent, canActivate: [AuthGuard]},
+  {path: 'view/:url', component: ViewpageComponent, canActivate: [AuthGuard]},
   { path: 'feed-page', component: FeedPageComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegistrationComponent },
   { path: 'reset', component: ResetComponent },
