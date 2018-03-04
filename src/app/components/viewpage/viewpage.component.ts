@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Trainer } from '../../models/trainer';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
+import { defaultProfilePicture } from '../../globals';
 
 @Component({
   selector: 'app-viewpage',
@@ -16,6 +17,7 @@ export class ViewpageComponent implements OnInit {
   trainers: Trainer[] = [];
   viewTrainer: Trainer;
   image = 'assets/images/profile.jpg';
+  profilePicture: string;
 
   posts: Post[];
 
@@ -34,6 +36,7 @@ export class ViewpageComponent implements OnInit {
         this.getTrainer();
       }
     );
+    this.profilePicture = this.viewTrainer.profilePictureUrl || defaultProfilePicture;
   }
 
   getTrainer(): void {
