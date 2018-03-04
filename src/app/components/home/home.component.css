@@ -1,5 +1,9 @@
+.post-container {
+    float: left;
+}
+
 .container {
-    width: 60% !important;
+    width: 100% !important;
     clear: both;
     overflow: hidden;
 }
@@ -57,7 +61,6 @@
 }
 
 .main {
-    float: right;
     padding: 0px 50px;
     border-radius: 10px;
 }
