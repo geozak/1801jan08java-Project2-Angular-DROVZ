@@ -1,7 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TrainerService } from '../../services/trainer.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Trainer } from '../../models/trainer';
+import { Post } from '../../models/post';
+import { PostService } from '../../services/post.service';
+import { defaultProfilePicture } from '../../globals';
 
 @Component({
   selector: 'app-viewpage',
@@ -10,25 +13,52 @@ import { Trainer } from '../../models/trainer';
 })
 export class ViewpageComponent implements OnInit {
 
-  @Input() trainer: Trainer;
-  public trainers: Trainer[] = [];
-  public viewTrainer: Trainer;
+  // @Input() trainer: Trainer;
+  trainers: Trainer[] = [];
+  viewTrainer: Trainer;
   image = 'assets/images/profile.jpg';
-  constructor(private trainerService: TrainerService, private route: ActivatedRoute ) {
-  
+  profilePicture: string;
+
+  posts: Post[];
+
+  constructor(
+    private trainerService: TrainerService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private postService: PostService ) {
+
   }
 
   ngOnInit() {
     this.getTrainer();
+    this.route.url.subscribe(
+      data => {
+        this.getTrainer();
+      }
+    );
+    this.profilePicture = this.viewTrainer.profilePictureUrl || defaultProfilePicture;
   }
 
   getTrainer(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log('Getting id ' + id);
-    this.trainerService.getTrainer(id).subscribe(
-      (NewViewTrainer) => {this.viewTrainer = NewViewTrainer;
+    const url = this.route.snapshot.paramMap.get('url');
+    console.log('Getting url ' + url);
+    this.trainerService.getTrainer(url).subscribe(
+      (NewViewTrainer) => {
+        this.viewTrainer = NewViewTrainer;
+        this.getPosts(url);
+      },
+      error => {
+        this.router.navigate(['/']);
       }
     );
   }
 
+  getPosts(url: string): void {
+    this.postService.getPostsByUrl(url).subscribe(
+      allPosts => {
+        this.posts = allPosts;
+        console.log(this.posts);
+      }
+    );
+  }
 }

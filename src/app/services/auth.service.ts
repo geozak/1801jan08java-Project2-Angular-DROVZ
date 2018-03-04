@@ -57,6 +57,45 @@ export class AuthService {
     //   });
   }
 
+  editUser(firstName: string, lastName: string, url: string, email: string) {
+    console.log('editing');
+
+    const formdata: FormData = new FormData();
+    formdata.append('firstName', firstName);
+    formdata.append('lastName', lastName);
+    formdata.append('email', email);
+    formdata.append('url', url);
+
+    return this.http.post<any>(domain + '/update', formdata,
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+      withCredentials: true
+    })
+      .map(message => {
+        console.log('mapping:');
+        console.log(message);
+        return message.message;
+      });
+  }
+
+  changePassword(oldPassword: string, newPassword: string, confirmPassword: string) {
+    console.log('updating password');
+
+    const formdata: FormData = new FormData();
+    formdata.append('oldPassword', oldPassword);
+    formdata.append('newPassword', newPassword);
+    formdata.append('confirmPassword', confirmPassword);
+
+    return this.http.post<any>(domain + '/updatePassword', formdata,
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+      withCredentials: true
+    })
+    .map(message => {
+      console.log('mapping:');
+      console.log(message);
+      return message.message;
+    });
+  }
+
   logout(): void {
     // remove trainer from local storage to log trainer out
     localStorage.removeItem('currentTrainer');

@@ -8,9 +8,8 @@
    <!-- </ng-template>-->
     <div class="user-info">
    
-    <img *ngIf="viewTrainer" src="{{ viewTrainer.profilePictureUrl }}" alt="" height="150" width="150" class="profile-img" />
-    
-     <img *ngIf="!viewTrainer" src="{{ image }}" alt="" height="150" width="150" class="profile-img" />
+    <img *ngIf="viewTrainer.profilePictureUrl" src="{{ viewTrainer.profilePictureUrl }}" alt="" height="150" width="150" class="profile-img" />
+    <img *ngIf="!viewTrainer.profilePictureUrl" src="https://www.atomix.com.au/media/2015/06/atomix_user31.png" alt="" height="150" width="150" class="profile-img" />
       
       <p *ngIf="viewTrainer">
         {{ viewTrainer.firstName }} {{ viewTrainer.lastName }}<br />
@@ -21,10 +20,27 @@
     
   
     
-    <div class="main">
+    <div class="post-container">
  
-   
-      <app-post></app-post>
+        <div class="view-posts">
+            <h2>POSTS</h2>
+            <ul>
+              <li *ngFor="let post of posts" class="post">
+          
+                <img *ngIf=viewTrainer.profilePictureUrl src="{{viewTrainer.profilePictureUrl}}" height="60" width="60" class="profile-thumbnail" />
+                <img *ngIf=!viewTrainer.profilePictureUrl src="https://www.atomix.com.au/media/2015/06/atomix_user31.png" height="60" width="60" class="profile-thumbnail" />
+                <p class="post-time">{{post.added}}</p>
+                <p class="post-desc">{{post.text}}</p>
+                <a (click)="likePost(post)" class="btn btn-link btn-like">Like {{post.likedBy.length}}</a>
+                <ul>
+                    <li *ngFor="let photo of post.postPhotos">
+                        <img src="{{photo.url}}" />
+                    </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+      
    
     </div> <!-- end .main -->
   
