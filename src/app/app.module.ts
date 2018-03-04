@@ -28,7 +28,7 @@ import { ProfileService } from './services/profile.service';
 import { CreateTokenComponent } from './components/create-token/create-token.component';
 import { EnterTokenComponent } from './components/enter-token/enter-token.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-
+import { PostdetailComponent } from './components/postdetail/postdetail.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     FeedPostsComponent,
     CreateTokenComponent,
     ChangePasswordComponent,
-    EnterTokenComponent
+    EnterTokenComponent,
+    PostdetailComponent
   ],
   imports: [
     BrowserModule,

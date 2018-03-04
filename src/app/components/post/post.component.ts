@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
+import { Trainer } from '../../models/trainer';
+import { Photo } from '../../models/photo';
 
 @Component({
   selector: 'app-post',
@@ -10,6 +12,8 @@ import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 })
 export class PostComponent implements OnInit {
   posts: Post[];
+  lphotos: Photo[];
+  llikedBy: Trainer[];
   loading = false;
   message: string | null = null;
 
@@ -19,27 +23,86 @@ export class PostComponent implements OnInit {
   constructor(private postService: PostService) { }
 
   ngOnInit() {
-    this.getPosts();
+     this.getPosts();
+   // this.getPostsByUrl(JSON.parse(localStorage.getItem('currentTrainer')).url);
   }
 
   getPosts(): void {
-    this.postService.getAllbyTrainer(JSON.parse(localStorage.getItem('currentTrainer')).id).subscribe(r=>this.posts = r);
+
+    this.postService.getPosts().subscribe(
+      allPosts => {
+        this.posts = allPosts;
+        console.log(this.posts);
+      }
+    );
+    // this.postService.getAllbyTrainer(JSON.parse(localStorage.getItem('currentTrainer')).id).subscribe(r=>this.posts = r);
+
+  }
+
+  getPostsByUrl(url: string): void {
+
+    this.postService.getPostsByUrl(url).subscribe(
+      allPosts => {
+        this.posts = allPosts;
+        console.log(this.posts);
+      }
+    );
+    // this.postService.getAllbyTrainer(JSON.parse(localStorage.getItem('currentTrainer')).id).subscribe(r=>this.posts = r);
+
   }
 
   createPost(post: string): void {
     this.loading = true;
-
     post = post.trim();
-    if (post || this.selectedFiles) {
+    if (!post) { return; }
 
-      // persist to db
-      this.upload(post);
-    }
+    // const postObj: Post = {
+    //   id: this.posts.length + 1,
+    //   text: post,
+    //   // added: new Date().getTime,
+    //   added: 0,
+    //   creator: JSON.parse(localStorage.getItem('currentTrainer')),
+    //   postPhotos: this.lphotos,
+    //   likedBy: this.llikedBy
+    // };
+
+    // this.posts.push(postObj);
+
+    // persist to db
+    // const response = this.postService.newPost(postObj.creator.id, postObj.text);
+    const response = this.postService.newPost(post);
+
+    // subscribe
+    response.subscribe(
+      data => {
+        console.log(data);
+        if (data === 'Failure') {
+          this.message = 'There was an error saving the post.';
+        }
+        if (data === 'Success') {
+          this.message = null;
+          this.getPosts();
+        }
+
+        this.loading = false;
+      },
+      error => {
+        console.log(error);
+        this.message = 'Unknown error occured.';
+        this.loading = false;
+      }
+    );
+
+    // if (post || this.selectedFiles) {
+
+    //   // persist to db
+    //   this.upload(post);
+    // }
   }
 
   upload(message: string) {
 
-    this.currentFileUpload = this.selectedFiles? this.selectedFiles.item(0):null;
+    this.currentFileUpload = this.selectedFiles ? this.selectedFiles.item(0) : null;
     this.postService.uploadPost(this.currentFileUpload, message).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
        // this.progress.percentage = Math.round(100 * event.loaded / event.total);
@@ -48,22 +111,22 @@ export class PostComponent implements OnInit {
         console.log('File is completely uploaded!');
         this.getPosts();
         this.loading = false;
-      }else{
-        this.loading=false;
+      } else {
+        this.loading = false;
       }
     }
 
       , err => {
-        console.log(err)
+        console.log(err);
         this.loading = false;
       }
-    )
+    );
   }
 
     likePost(post: Post): void {
       const liker = JSON.parse(localStorage.getItem('currentTrainer'));
 
-      if(post.likedBy.includes(liker)) {
+      if (post.likedBy.includes(liker)) {
         // unlike
         post.likedBy.splice(post.likedBy.indexOf(liker), 1);
 
