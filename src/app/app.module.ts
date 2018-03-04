@@ -27,6 +27,7 @@ import { ForgotService } from './services/forgot.service';
 import { ProfileService } from './services/profile.service';
 import { CreateTokenComponent } from './components/create-token/create-token.component';
 import { EnterTokenComponent } from './components/enter-token/enter-token.component';
+import { PostdetailComponent } from './components/postdetail/postdetail.component';
 
 
 
@@ -46,7 +47,8 @@ import { EnterTokenComponent } from './components/enter-token/enter-token.compon
     ResetComponent,
     FeedPostsComponent,
     CreateTokenComponent,
-    EnterTokenComponent
+    EnterTokenComponent,
+    PostdetailComponent
   ],
   imports: [
     BrowserModule,
