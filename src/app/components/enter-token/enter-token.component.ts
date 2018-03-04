@@ -11,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EnterTokenComponent implements OnInit {
   token: string;
   email: string;
+  newPassword: string;
+  confirmPassword: string;
   message: string | null = null;
 
   constructor(
@@ -22,12 +24,12 @@ export class EnterTokenComponent implements OnInit {
   ngOnInit() {
   }
 
-  verifyInformation(): void {
-    this.forgotService.verifyToken(this.email, this.token).subscribe(
+  updatePassword(): void {
+    this.forgotService.updatePassword(this.email, this.token, this.newPassword, this.confirmPassword).subscribe(
       data => {
         switch (data) {
           case 'success':
-            this.router.navigate(['change-password']);
+            this.router.navigate(['login']);
             break;
             case 'email':
             this.message = 'Email Not Found';
@@ -35,8 +37,11 @@ export class EnterTokenComponent implements OnInit {
             case 'token':
             this.message = 'Token Not Found';
             break;
-            case 'match':
+            case 'id':
             this.message = 'Email/Token Mismatch';
+            break;
+            case 'match':
+            this.message = 'Passwords Must Match';
             break;
         }
       },
