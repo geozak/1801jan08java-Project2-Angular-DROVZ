@@ -24,23 +24,4 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-  changePassword(): void {
-    this.forgotService.updatePassword(this.email, this.newPassword, this.verifyPassword).subscribe(
-      data => {
-        switch (data) {
-          case 'success':
-            this.router.navigate(['login']);
-            localStorage.clear();
-            break;
-          case 'match':
-            this.message = 'Passwords Must Match';
-            break;
-        }
-      },
-      error => {
-        console.log('subscribed error');
-        console.log(error);
-        // this.alertService.error(error);
-      });
-  }
 }
