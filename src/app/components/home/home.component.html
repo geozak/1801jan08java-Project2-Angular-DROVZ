@@ -38,17 +38,21 @@
     <div *ngIf=isEdit class="edit-user">
       <h2>EDIT PROFILE</h2>
       <div class="form-group">
-        <input #firstName type="text" class="form-control" id="firstName" placeholder="First name">
+        <label>First name</label>
+        <input #firstName type="text" value="{{ currentTrainer.firstName }}" class="form-control" id="firstName" placeholder="First name">
       </div>
       <div class="form-group">
-        <input #lastName type="text" class="form-control" id="lastName" placeholder="Last name">
+        <label>Last name</label>
+        <input #lastName type="text" value="{{ currentTrainer.lastName }}" class="form-control" id="lastName" placeholder="Last name">
       </div>
       <div class="form-group">
-        <input #url type="text" class="form-control" id="url" placeholder="Profile url">
+        <label>Profile url</label>
+        <input #url type="text" value="{{ currentTrainer.url }}" class="form-control" id="url" placeholder="Profile url">
       </div>
       <p *ngIf=!this.validEmail class="alert alert-danger">Invalid email</p>
       <div class="form-group">
-        <input #email (blur)="validateEmail(email.value)" type="email" class="form-control" id="email" placeholder="Email">
+        <label>Email</label>
+        <input #email (blur)="validateEmail(email.value)" value="{{ currentTrainer.email }}" type="email" class="form-control" id="email" placeholder="Email">
       </div>
       <button (click)="editUser(firstName.value, lastName.value, url.value, email.value); toggleEdit();" class="btn btn-primary btn-submit">Submit</button>
     </div> <!-- end .edit-user -->
