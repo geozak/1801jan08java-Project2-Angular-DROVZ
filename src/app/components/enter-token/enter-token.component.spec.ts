@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormsUploadComponent } from './forms-upload.component';
+import { EnterTokenComponent } from './enter-token.component';
 
-describe('FormsUploadComponent', () => {
-  let component: FormsUploadComponent;
-  let fixture: ComponentFixture<FormsUploadComponent>;
+describe('EnterTokenComponent', () => {
+  let component: EnterTokenComponent;
+  let fixture: ComponentFixture<EnterTokenComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormsUploadComponent ]
+      declarations: [ EnterTokenComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormsUploadComponent);
+    fixture = TestBed.createComponent(EnterTokenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

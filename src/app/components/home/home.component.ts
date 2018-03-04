@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { UploadFileService } from '../../services/upload-file.service'
 import { ProfileService } from '../../services/profile.service';
+import { TrainerService } from '../../services/trainer.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 }
   validEmail = true;
 
-  constructor(private profileService: ProfileService, private uploadService: UploadFileService) {
+  constructor(private profileService: ProfileService, private uploadService: UploadFileService, private trainerService: TrainerService) {
     this.currentTrainer = JSON.parse(localStorage.getItem('currentTrainer'));
   }
 
@@ -109,8 +110,10 @@ export class HomeComponent implements OnInit {
     var fileName = (<HTMLInputElement>(document.getElementById("fileName"))).value;
     var idxDot = fileName.lastIndexOf(".") + 1;
     var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    console.log('got here first')
     if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" || extFile=="gif"){
       this.selectedFiles = event.target.files;
+      console.log('got here first')
       this.upload();
     }else{
         alert("Only jpg/jpeg and png files are allowed!");
@@ -118,9 +121,9 @@ export class HomeComponent implements OnInit {
 }
 upload() {
   this.progress.percentage = 0;
-
+  console.log("got here");
   this.currentFileUpload = this.selectedFiles.item(0)
-  this.uploadService.updateTrainerPhoto(this.currentFileUpload, this.currentTrainer.id).subscribe(event => {
+  this.trainerService.updateTrainerPhoto(this.currentFileUpload).subscribe(event => {
     if (event.type === HttpEventType.UploadProgress) {
       this.progress.percentage = Math.round(100 * event.loaded / event.total);
     } else if (event instanceof HttpResponse) {

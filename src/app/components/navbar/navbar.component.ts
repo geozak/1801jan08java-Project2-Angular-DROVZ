@@ -27,10 +27,16 @@ export class NavbarComponent implements OnInit {
 
  findUser(input: string): void {
   let i: number;
-  for (i = 0; i < this.trainers.length; i++ ) {
-     if ( this.trainers[i].firstName === input || String(this.trainers[i].id) === input ||
-     this.trainers[i].lastName === input || this.trainers[i].email === input ) {
+  if (input === '') {
+    this.currTrainer = null;
+  }
+  for (i = 0; i < this.trainers.length + 1; i++ ) {
+    console.log(this.trainers[i].email + ' ' + input);
+     if ( this.trainers[i].firstName.toLowerCase() === input.toLowerCase() || String(this.trainers[i].id) === input ||
+     this.trainers[i].lastName.toLowerCase() === input.toLowerCase()) {
+       if ( input !== '') {
          this.currTrainer = this.trainers[i];
+       }
      }
   }
  }
