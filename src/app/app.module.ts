@@ -27,10 +27,9 @@ import { ForgotService } from './services/forgot.service';
 import { ProfileService } from './services/profile.service';
 import { CreateTokenComponent } from './components/create-token/create-token.component';
 import { EnterTokenComponent } from './components/enter-token/enter-token.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { PostdetailComponent } from './components/postdetail/postdetail.component';
 import { FeedPostDetailComponent } from './components/feed-post-detail/feed-post-detail.component';
-
-
 
 @NgModule({
   declarations: [
@@ -48,6 +47,7 @@ import { FeedPostDetailComponent } from './components/feed-post-detail/feed-post
     ResetComponent,
     FeedPostsComponent,
     CreateTokenComponent,
+    ChangePasswordComponent,
     EnterTokenComponent,
     PostdetailComponent,
     FeedPostDetailComponent
