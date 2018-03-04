@@ -1,3 +1,4 @@
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { AuthGuard } from './guards/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -49,7 +50,8 @@ import { EnterTokenComponent } from './components/enter-token/enter-token.compon
     ResetComponent,
     FeedPostsComponent,
     CreateTokenComponent,
-    EnterTokenComponent
+    EnterTokenComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

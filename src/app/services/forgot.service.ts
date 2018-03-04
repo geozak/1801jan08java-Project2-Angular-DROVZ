@@ -26,7 +26,7 @@ export class ForgotService {
     formdata.append('confirmPassword', confirmPassword);
     formdata.append('token', token);
 
-    return this.httpClient.post<any>(domain + '/enter-password', formdata,
+    return this.httpClient.post<any>(domain + '/reset-password', formdata,
       { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
       .map(message => {
         return message.message;
