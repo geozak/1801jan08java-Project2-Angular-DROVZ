@@ -13,8 +13,8 @@ export class PostComponent implements OnInit {
   loading = false;
   message: string | null = null;
 
-  selectedFiles: FileList
-  currentFileUpload: File
+  selectedFiles: FileList;
+  currentFileUpload: File;
 
   constructor(private postService: PostService) { }
 

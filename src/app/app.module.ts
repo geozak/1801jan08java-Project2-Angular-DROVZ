@@ -27,7 +27,7 @@ import { ForgotService } from './services/forgot.service';
 import { ProfileService } from './services/profile.service';
 import { CreateTokenComponent } from './components/create-token/create-token.component';
 import { EnterTokenComponent } from './components/enter-token/enter-token.component';
-
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 @NgModule({
@@ -46,6 +46,7 @@ import { EnterTokenComponent } from './components/enter-token/enter-token.compon
     ResetComponent,
     FeedPostsComponent,
     CreateTokenComponent,
+    ChangePasswordComponent,
     EnterTokenComponent
   ],
   imports: [

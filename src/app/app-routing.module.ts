@@ -10,7 +10,7 @@ import { ViewpageComponent } from './components/viewpage/viewpage.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { CreateTokenComponent } from './components/create-token/create-token.component';
-
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'reset', component: ResetComponent },
   { path: 'create-token', component: CreateTokenComponent },
   { path: 'enter-token', component: EnterTokenComponent },
+  { path: 'update-password', component: ChangePasswordComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];
