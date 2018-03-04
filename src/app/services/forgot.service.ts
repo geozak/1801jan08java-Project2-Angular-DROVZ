@@ -19,30 +19,14 @@ export class ForgotService {
       });
   }
 
-  verifyToken(email: string, token: string): Observable<string> {
-    const formdata: FormData = new FormData;
-    formdata.append('email', email);
-    formdata.append('token', token);
-
-    return this.httpClient.post<any>(domain + '/enter-token', formdata,
-      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
-      .map(message => {
-        if (email) {
-          localStorage.setItem('trainerEmail', JSON.stringify(email));
-          localStorage.setItem('trainerToken', JSON.stringify(token));
-        }
-        return message.message;
-      });
-  }
-
-  updatePassword(email: string, newPassword: string, confirmPassword: string): Observable<string> {
+  updatePassword(email: string, token: string, newPassword: string, confirmPassword: string): Observable<string> {
     const formdata: FormData = new FormData;
     formdata.append('email', email);
     formdata.append('newPassword', newPassword);
     formdata.append('confirmPassword', confirmPassword);
-    formdata.append('token', localStorage.getItem('trainerToken'));
+    formdata.append('token', token);
 
-    return this.httpClient.post<any>(domain + '/change-password', formdata,
+    return this.httpClient.post<any>(domain + '/enter-password', formdata,
       { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
       .map(message => {
         return message.message;

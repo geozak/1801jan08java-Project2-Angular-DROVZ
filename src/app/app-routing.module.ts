@@ -1,5 +1,4 @@
 import { EnterTokenComponent } from './components/enter-token/enter-token.component';
-import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { FeedPageComponent } from './components/feed-page/feed-page.component';
 import { AuthGuard } from './guards/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
   { path: 'feed-page', component: FeedPageComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegistrationComponent },
   { path: 'reset', component: ResetComponent },
-  { path: 'change-password', component: ChangePasswordComponent },
   { path: 'create-token', component: CreateTokenComponent },
   { path: 'enter-token', component: EnterTokenComponent },
   // otherwise redirect to home

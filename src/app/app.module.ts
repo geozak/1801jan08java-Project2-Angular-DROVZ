@@ -27,7 +27,6 @@ import { ResetComponent } from './components/reset/reset.component';
 import { FeedPostsComponent } from './components/feed-posts/feed-posts.component';
 import { ForgotService } from './services/forgot.service';
 import { ProfileService } from './services/profile.service';
-import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { CreateTokenComponent } from './components/create-token/create-token.component';
 import { EnterTokenComponent } from './components/enter-token/enter-token.component';
 
@@ -49,7 +48,6 @@ import { EnterTokenComponent } from './components/enter-token/enter-token.compon
     RegistrationComponent,
     ResetComponent,
     FeedPostsComponent,
-    ChangePasswordComponent,
     CreateTokenComponent,
     EnterTokenComponent
   ],
