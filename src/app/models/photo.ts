@@ -1,5 +1,4 @@
-import { Trainer } from "./trainer";
-
+import { Trainer } from './trainer';
 
 export class Photo {
     id: number;

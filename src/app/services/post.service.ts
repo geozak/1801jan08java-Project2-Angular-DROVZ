@@ -9,27 +9,77 @@ import { AjaxService } from './ajax.service';
 @Injectable()
 export class PostService {
 
-  constructor(private http: HttpClient,private ajax: AjaxService) { }
+  constructor(private http: HttpClient, private ajax: AjaxService) { }
 
-  getPosts(): Post[] {
+  public getPosts(): Observable<Post[]> {
     console.log('getting posts');
 
-    // return this.http.get<any>(domain + '/getPosts', formdata,
-    //   { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
-    //   .map(data => {
-    //     console.log('mapping:');
-    //     console.log(data);
-    //     return data;
-    //   });
-    return [];
+    return this.ajax.getForObject<Post[]>('/getPosts');
+  //   return this.http
+  //   .get<Post[]>(domain + `/getPosts`,
+  //   {
+  //     headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+  //     withCredentials: true
+  //   }
+  // )
+  // .map((post: Post[]) => {
+  //   console.log(post);
+  //   return post;
+  //   });
+
   }
+
+  public getAllPosts(): Observable<Post[]> {
+    console.log('getting posts');
+
+    return this.ajax.getForObject<Post[]>('/getAllPosts');
+
+  }
+
+  public getPostsByUrl(url: string): Observable<Post[]> {
+    console.log('getting posts');
+
+    const formdata: FormData = new FormData();
+    formdata.append('url', url);
+
+    return this.ajax.postForObject<Post[]>('/getPostByUrl', formdata);
+    // return this.http
+    // .post<Post[]>(domain + `/getPostsByUrl`,  formdata,
+    // {
+    //   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+    //   withCredentials: true
+    // }
+  // )
+  // .map((post: Post[]) => {
+  //   console.log(post);
+  //   return post;
+  //   });
+
+  }
+
+  // newPost(trainer_id: number, post_desc: string): Observable<string> {
+  newPost(post_desc: string): Observable<string> {
+    console.log('creating new post');
+
+    const formdata: FormData = new FormData();
+    // formdata.append('author', trainer_id.toString());
+    formdata.append('post', post_desc);
+
+    return this.ajax.postForStatus('/createPost', formdata);
+    // return this.http.post<any>(domain + '/createPost', formdata,
+    //   { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }) })
+    //   .map(message => {
+    //     console.log('mapping:');
+    //     console.log(message);
+    //     return message.message;
+    //   });
+}
 
   uploadPost(file: File, message: string): Observable<HttpEvent<{}>> {
     // let formdata: FormData = new FormData();
- 
-    // formdata.append('file', file);
+   // formdata.append('file', file);
     // formdata.append('message', message);
- 
+
     // const req = new HttpRequest('POST', domain + '/addPost', formdata, {
     //   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
     //   withCredentials: true,
@@ -39,10 +89,10 @@ export class PostService {
     // return this.http.request(req);
 
     let formdata: FormData = new FormData();
- 
+
     formdata.append('file', file);
     formdata.append('message', message);
-    
+
     return this.http.request(new HttpRequest('POST', domain + '/addPost', formdata, {
       headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
       withCredentials: true,

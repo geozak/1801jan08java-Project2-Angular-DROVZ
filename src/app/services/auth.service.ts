@@ -19,7 +19,7 @@ export class AuthService {
     formdata.append('email', email);
     formdata.append('password', password);
 
-    return this.ajax.postForObject<Trainer>('/login', formdata)
+    return this.ajax.postForObject<Trainer | null>('/login', formdata)
       .map(trainer => {
         console.log('mapping:');
         console.log(trainer);
@@ -42,8 +42,8 @@ export class AuthService {
     formdata.append('lastName', lastName);
     formdata.append('email', email);
     formdata.append('password', password);
-    formdata.append('profilePhotoUrl', 'http://www.pgconnects.com'
-    + '/helsinki/wp-content/uploads/sites/3/2015/07/generic-profile-grey-380x380.jpg');
+    // formdata.append('profilePhotoUrl', 'http://www.pgconnects.com'
+    // + '/helsinki/wp-content/uploads/sites/3/2015/07/generic-profile-grey-380x380.jpg');
 
     return this.ajax.postForStatus('/register', formdata);
     // return this.http.post<any>(domain + '/register', formdata,
@@ -57,24 +57,30 @@ export class AuthService {
     //   });
   }
 
+  editUser(firstName: string, lastName: string, url: string, email: string) {
+    console.log('editing');
+
+    const formdata: FormData = new FormData();
+    formdata.append('firstName', firstName);
+    formdata.append('lastName', lastName);
+    formdata.append('email', email);
+    formdata.append('url', url);
+
+    return this.http.post<any>(domain + '/update', formdata,
+      { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+      withCredentials: true
+    })
+      .map(message => {
+        console.log('mapping:');
+        console.log(message);
+        return message.message;
+      });
+  }
+
   logout(): void {
     // remove trainer from local storage to log trainer out
     localStorage.removeItem('currentTrainer');
-  }
 
-  requestReset(email: string): Observable<string> {
-    return;
-  }
-
-  reset(token: string, email: string): Observable<string> {
-    return;
-  }
-
-  updatePassword(oldPassword: string, newPassword: string): Observable<string> {
-    return;
-  }
-
-  loggedIn(): Boolean {
-    return;
+    this.ajax.postForStatus('/logout', null);
   }
 }

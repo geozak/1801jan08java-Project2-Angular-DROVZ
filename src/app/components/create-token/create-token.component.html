@@ -1,0 +1,14 @@
+<div class="reset-password">
+  <h3>Generate Token</h3>
+  <h5>A token will be sent to your email that will be used to change your password.</h5>
+  <h5>Please enter the email address linked to your account</h5>
+  <p *ngIf=this.message class="alert alert-danger">{{ this.message }}</p>
+  <div class="form-group">
+    <input [(ngModel)]="email" type="email" placeholder="Email" required />
+  </div>
+<!--   <div class="form-group">
+    <input #password type="text" class="form-control" id="username" placeholder="New password">
+  </div> -->
+  <button (click)="sendToken()" class="btn btn-primary btn-update">Send Token</button>
+  <button routerLink='/reset' class="btn btn-primary btn-update">Back</button>
+</div>
