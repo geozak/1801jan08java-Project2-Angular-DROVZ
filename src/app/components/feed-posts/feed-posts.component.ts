@@ -16,15 +16,14 @@ export class FeedPostsComponent implements OnInit {
   constructor(private postService: PostService) { }
 
   ngOnInit() {
-    this.getPosts();
+    this.getAllPosts();
   }
 
-  getPosts(): void {
+  getAllPosts(): void {
 
-    this.postService.getPosts().subscribe(
+    this.postService.getAllPosts().subscribe(
       allPosts => {
         this.posts = allPosts;
-        console.log(this.posts);
       }
     );
     // this.postService.getAllbyTrainer(JSON.parse(localStorage.getItem('currentTrainer')).id).subscribe(r=>this.posts = r);
