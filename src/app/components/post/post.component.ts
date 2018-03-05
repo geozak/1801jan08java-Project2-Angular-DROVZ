@@ -140,7 +140,7 @@ export class PostComponent implements OnInit {
         post.likedBy.splice(post.likedBy.indexOf(liker), 1);
 
         // persist to db
-        const response = this.postService.unlike(post.id, liker.id);
+        const response = this.postService.unlike(post.id);
 
         // subscribe
         response.subscribe(
@@ -156,7 +156,7 @@ export class PostComponent implements OnInit {
         post.likedBy.push(liker);
 
         // persist to db
-        const response = this.postService.like(post.id, liker.id);
+        const response = this.postService.like(post.id);
 
         // subscribe
         response.subscribe(
