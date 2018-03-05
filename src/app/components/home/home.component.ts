@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs/Subject';
 import { PostComponent } from './../post/post.component';
 import { Trainer } from './../../models/trainer';
 import { Component, OnInit } from '@angular/core';
@@ -7,7 +8,7 @@ import { ProfileService } from '../../services/profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TrainerService } from '../../services/trainer.service';
-import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-home',
