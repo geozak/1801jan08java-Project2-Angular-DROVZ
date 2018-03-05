@@ -20,7 +20,7 @@
                     <div class="col-md-6" >
                         <div class="list-group" id="searchList" #searchList>
                             <input #searchBox class="form-control search" id="myInput" type="text" placeholder="Search users.." (keyup)="findUser(searchBox.value)">
-                                  <div *ngIf="currTrainer">
+                                  <div *ngFor="let currTrainer of matchingTrainers">
                                       <a routerLink="/view/{{currTrainer.url}}" class="list-group-item" (click)="deselectTrainer()" (click)="searchBox.value=''">{{currTrainer.firstName}} {{currTrainer.lastName}}</a>
                                   </div>
                                   </div>
