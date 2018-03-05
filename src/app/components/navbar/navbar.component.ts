@@ -12,7 +12,7 @@ import { Trainer } from '../../models/trainer';
 export class NavbarComponent implements OnInit {
   profileName: String;
   public trainers: Trainer[] = [];
-  public currTrainer: Trainer;
+  matchingTrainers: Trainer[] = [];
   public mainTrainer: Trainer;
   image = 'assets/images/Pokeball.jpg';
 
@@ -26,23 +26,22 @@ export class NavbarComponent implements OnInit {
   }
 
  findUser(input: string): void {
+
   let i: number;
-  if (input === '') {
-    this.currTrainer = null;
-  }
+  this.matchingTrainers = [];
   for (i = 0; i < this.trainers.length + 1; i++ ) {
     console.log(this.trainers[i].email + ' ' + input);
      if ( this.trainers[i].firstName.toLowerCase() === input.toLowerCase() || String(this.trainers[i].id) === input ||
      this.trainers[i].lastName.toLowerCase() === input.toLowerCase()) {
        if ( input !== '') {
-         this.currTrainer = this.trainers[i];
+         this.matchingTrainers.push(this.trainers[i]);
        }
      }
   }
  }
 
  deselectTrainer(): void {
-  this.currTrainer = null;
+   this.matchingTrainers = [];
  }
 
   getAllTrainers(): void {

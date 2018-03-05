@@ -8,4 +8,5 @@ export class Post {
     creator: Trainer;
     postPhotos: Photo[];
     likedBy: Trainer[];
+
 }

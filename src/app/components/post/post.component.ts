@@ -1,10 +1,11 @@
-import { Component, OnInit, Injectable, Input } from '@angular/core';
+import { PostdetailComponent } from './../postdetail/postdetail.component';
+import { Component, OnInit, Injectable, Input, ViewChild } from '@angular/core';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { Trainer } from '../../models/trainer';
 import { Photo } from '../../models/photo';
-import { Subject } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-post',
@@ -24,9 +25,12 @@ export class PostComponent implements OnInit {
 
   @Input() updater: Subject<number>;
 
+  photoUpdator: Subject<string>;
+
   constructor(private postService: PostService) { }
 
   ngOnInit() {
+    this.photoUpdator = new Subject<string>();
      this.getPosts();
    // this.getPostsByUrl(JSON.parse(localStorage.getItem('currentTrainer')).url);
    this.updater.subscribe(
@@ -34,6 +38,11 @@ export class PostComponent implements OnInit {
        this.getPosts();
      }
    );
+    this.photoUpdator.subscribe(
+      data => {
+        this.getPosts();
+      }
+    );
   }
 
   getPosts(): void {

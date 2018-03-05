@@ -162,7 +162,17 @@ export class PostService {
     return;
   }
 
-  addPhoto(id: number, filePath: string): Observable<string> {
-    return;
+  addPhoto(id: number, file: File): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+
+    
+    formdata.append('file', file);
+    formdata.append('id', `${id}`);
+    return this.http.request(new HttpRequest('POST', domain + '/updatePost', formdata, {
+      headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+      withCredentials: true,
+      reportProgress: true,
+      responseType: 'text'
+    }));
   }
 }
