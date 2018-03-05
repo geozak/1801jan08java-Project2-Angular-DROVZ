@@ -5,4 +5,8 @@ export class Photo {
     url: string;
     added: number; // epoch time
     creator: Trainer;
+
+    constructor(url: string){
+        this.url = url;
+    }
 }

@@ -6,9 +6,9 @@
   Created By:&nbsp; {{ post.creator.firstName }} {{ post.creator.lastName }}
 </p>
 <p class="post-desc">{{post.text}}</p>
-<a (click)="likePost(post)" class="btn btn-link btn-like">Like {{post.likedBy.length}}</a>
+<app-like-post [post]=post></app-like-post>
 <ul>
   <li *ngFor="let photo of post.postPhotos">
-    <img src="{{photo.url}}" />
+    <img src="{{photo.url}}" height="150" width="150" />
   </li>
 </ul>

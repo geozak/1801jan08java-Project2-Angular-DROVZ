@@ -101,12 +101,11 @@ export class PostService {
     }));
   }
 
-  like(postID: number, likerID: number): Observable<string> {
+  like(postID: number): Observable<string> {
     console.log('liking');
 
     const formdata: FormData = new FormData();
     formdata.append('postID', postID.toString());
-    formdata.append('likerID', likerID.toString());
 
     return this.http.post<any>(domain + '/like', formdata,
       { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
@@ -119,12 +118,11 @@ export class PostService {
       });
   }
 
-  unlike(postID: number, likerID: number): Observable<string> {
+  unlike(postID: number): Observable<string> {
     console.log('unliking');
 
     const formdata: FormData = new FormData();
     formdata.append('postID', postID.toString());
-    formdata.append('likerID', likerID.toString());
 
     return this.http.post<any>(domain + '/unlike', formdata,
       { headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
@@ -164,7 +162,17 @@ export class PostService {
     return;
   }
 
-  addPhoto(id: number, filePath: string): Observable<string> {
-    return;
+  addPhoto(id: number, file: File): Observable<HttpEvent<{}>> {
+    let formdata: FormData = new FormData();
+
+    
+    formdata.append('file', file);
+    formdata.append('id', `${id}`);
+    return this.http.request(new HttpRequest('POST', domain + '/updatePost', formdata, {
+      headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*'}),
+      withCredentials: true,
+      reportProgress: true,
+      responseType: 'text'
+    }));
   }
 }
