@@ -2,7 +2,10 @@
   <img src="{{ profilePicture }}" height="60" width="60" class="profile-thumbnail" />
       <!-- <img *ngIf=!post.creator.profilePictureURL src="https://www.atomix.com.au/media/2015/06/atomix_user31.png" height="60" width="60" class="profile-thumbnail" /> -->
       <p class="post-time">{{post.added}}</p>
+
       <p class="post-desc">{{post.text}}</p>
+      Upload <input id ="fileName" type="file" (change)="selectFile($event)" accept="image/*">
+      <br>
       <a (click)="likePost(post)" class="btn btn-link btn-like">Like {{post.likedBy.length}}</a>
       <ul>
           <li *ngFor="let photo of post.postPhotos">
