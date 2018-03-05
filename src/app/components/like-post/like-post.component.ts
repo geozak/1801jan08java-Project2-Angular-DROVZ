@@ -1,49 +1,53 @@
+import { Trainer } from './../../models/trainer';
 import { PostService } from './../../services/post.service';
 import { Post } from './../../models/post';
-import { Trainer } from './../../models/trainer';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-feed-posts',
-  templateUrl: './feed-posts.component.html',
-  styleUrls: ['./feed-posts.component.css']
+  selector: 'app-like-post',
+  templateUrl: './like-post.component.html',
+  styleUrls: ['./like-post.component.css']
 })
-export class FeedPostsComponent implements OnInit {
+export class LikePostComponent implements OnInit {
+@Input() post: Post;
 
-  trainers: Trainer[] = [];
-  posts: Post[] = [];
+buttonText: string;
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService) {
+    this.buttonText = 'Like';
+   }
 
   ngOnInit() {
-    this.getAllPosts();
-  }
-
-  getAllPosts(): void {
-
-    this.postService.getAllPosts().subscribe(
-      allPosts => {
-        this.posts = allPosts;
+    const liker = JSON.parse(localStorage.getItem('currentTrainer'));
+    this.post.likedBy.forEach(element => {
+      if (element.id === liker.id) {
+        this.buttonText = 'Unlike';
       }
-    );
-    // this.postService.getAllbyTrainer(JSON.parse(localStorage.getItem('currentTrainer')).id).subscribe(r=>this.posts = r);
-
+    });
   }
 
   likePost(post: Post): void {
     const liker = JSON.parse(localStorage.getItem('currentTrainer'));
+    let found = false;
+    this.post.likedBy.forEach(element => {
+      if (element.id === liker.id) {
+        found = true;
+      }
+    });
 
-    if (post.likedBy.includes(liker)) {
+    if (found) {
       // unlike
       post.likedBy.splice(post.likedBy.indexOf(liker), 1);
 
       // persist to db
+      console.log('unlike post');
       const response = this.postService.unlike(post.id);
 
       // subscribe
       response.subscribe(
         data => {
           console.log(data);
+          this.buttonText = 'Like';
         },
         error => {
           console.log(error);
@@ -60,6 +64,7 @@ export class FeedPostsComponent implements OnInit {
       response.subscribe(
         data => {
           console.log(data);
+          this.buttonText = 'Unlike';
         },
         error => {
           console.log(error);

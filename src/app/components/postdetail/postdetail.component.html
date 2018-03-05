@@ -4,9 +4,10 @@
       <p class="post-time">{{post.added}}</p>
 
       <p class="post-desc">{{post.text}}</p>
-      Upload <input id ="fileName" type="file" (change)="selectFile($event)" accept="image/*">
+
+	Upload <input id ="fileName" type="file" (change)="selectFile($event)" accept="image/*">
       <br>
-      <a (click)="likePost(post)" class="btn btn-link btn-like">Like {{post.likedBy.length}}</a>
+      <app-like-post [post]=post></app-like-post>
       <ul>
           <li *ngFor="let photo of post.postPhotos">
               <img src="{{photo.url}}" />

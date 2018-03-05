@@ -30,6 +30,7 @@ import { EnterTokenComponent } from './components/enter-token/enter-token.compon
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { PostdetailComponent } from './components/postdetail/postdetail.component';
 import { FeedPostDetailComponent } from './components/feed-post-detail/feed-post-detail.component';
+import { LikePostComponent } from './components/like-post/like-post.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FeedPostDetailComponent } from './components/feed-post-detail/feed-post
     ChangePasswordComponent,
     EnterTokenComponent,
     PostdetailComponent,
-    FeedPostDetailComponent
+    FeedPostDetailComponent,
+    LikePostComponent
   ],
   imports: [
     BrowserModule,

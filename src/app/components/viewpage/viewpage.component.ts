@@ -36,7 +36,6 @@ export class ViewpageComponent implements OnInit {
         this.getTrainer();
       }
     );
-    this.profilePicture = this.viewTrainer.profilePictureUrl || defaultProfilePicture;
   }
 
   getTrainer(): void {
@@ -45,6 +44,7 @@ export class ViewpageComponent implements OnInit {
     this.trainerService.getTrainer(url).subscribe(
       (NewViewTrainer) => {
         this.viewTrainer = NewViewTrainer;
+        this.profilePicture = this.viewTrainer.profilePictureUrl || defaultProfilePicture;
         this.getPosts(url);
       },
       error => {
